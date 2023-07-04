@@ -1,10 +1,12 @@
 import "./App.css";
+import Home from "./screens/ExampleScreen/Home";
 import Login from "./screens/ExampleScreen/Login";
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <Home />
     </>
   );
 }
