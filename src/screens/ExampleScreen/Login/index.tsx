@@ -1,5 +1,5 @@
 import { Skeleton } from "@mui/material";
-import "./styles.css";
+import "./styles.scss";
 // animation="wave"
 
 const Login = () => {
