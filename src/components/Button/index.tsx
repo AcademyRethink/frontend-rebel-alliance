@@ -2,15 +2,17 @@ import "./styles.scss";
 import { ButtonProps } from "../../types/buttonTypes";
 
 const Button = ({
-  className = "buttonDefault",
+  className,
   text,
-  icon,
+  iconLeft,
+  iconRight,
   onClick,
 }: ButtonProps) => {
   return (
-    <button className={className} onClick={onClick}>
+    <button className={`defaultButton ${className}`} onClick={onClick}>
+      {iconLeft && <img src={iconLeft} alt={iconLeft} />}
       {text}
-      {icon && <img src={icon} alt={icon} />}
+      {iconRight && <img src={iconRight} alt={iconRight} />}
     </button>
   );
 };

@@ -1,12 +1,7 @@
-import "./App.css";
-import Button from "./components/Button";
+import "./App.scss";
 
 function App() {
-  return (
-    <>
-      <Button text="Abrir" onClick={() => console.log("Teste")} />
-    </>
-  );
+  return <></>;
 }
 
 export default App;

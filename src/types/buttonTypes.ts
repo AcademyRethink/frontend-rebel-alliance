@@ -1,6 +1,7 @@
 export type ButtonProps = {
   className?: string;
   text: string;
-  icon?: string;
+  iconLeft?: string;
+  iconRight?: string;
   onClick: () => void;
 };
