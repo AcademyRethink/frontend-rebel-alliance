@@ -1,7 +1,9 @@
 import "./App.scss";
+import TextInput from "./components/Input";
 
 function App() {
-  return <></>;
+  return <>
+  </>;
 }
 
 export default App;
