@@ -59,7 +59,10 @@ const SideBar = () => {
             className="sideBarButton"
             text="Sair"
             iconLeft={iconExit}
-            onClick={() => console.log("Sair")}
+            onClick={() => {
+              localStorage.removeItem("token");
+              window.location.href = "/login";
+            }}
           />
         </div>
       </nav>
