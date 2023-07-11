@@ -1,6 +1,6 @@
 @import "./../../utils/variables";
 
-.defaultButton{ 
+.defaultButton {
   display: flex;
   align-items: center;
   border: none;
@@ -12,7 +12,6 @@
   line-height: normal;
   color: $monitore-white;
   background: $monitore-brown;
-
 }
 
 .normalButton {
@@ -22,7 +21,7 @@
   padding: 8px;
 }
 
-.largeButton{
+.largeButton {
   justify-content: space-around;
   width: 202px;
   height: 50px;
@@ -30,27 +29,27 @@
 }
 
 .transparentButton {
-  gap:8px;
+  gap: 8px;
   width: 134px;
   height: 50px;
   padding: 8px;
   background: none;
 }
 
-.sideBarButton { 
-  gap:8px;
+.sideBarButton {
+  gap: 8px;
   width: 187px;
-  height: 50px;
+  height: 40px;
   padding: 8px 32px 8px 8px;
   background: none;
 }
 
-.filterButton { 
+.filterButton {
   justify-content: space-between;
-  gap:8px;
+  gap: 8px;
   width: 202px;
   height: 50px;
   padding: 8px 16px;
-  background: #EFEFEF;
-  color: $monitore-brown; 
+  background: #efefef;
+  color: $monitore-brown;
 }

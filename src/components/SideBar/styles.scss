@@ -26,10 +26,13 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  li {
+    list-style: none;
+  }
 }
 
 .linkActive {
-  background: #454545;
+  background: $monitore-button-black;
   border-radius: 8px;
   text-decoration: none;
 }
@@ -37,4 +40,15 @@
 .linkNoActive {
   background: none;
   text-decoration: none;
+  &:hover {
+    background: $monitore-button-black-hover;
+    border-radius: 8px;
+  }
+}
+
+.containerExit {
+  &:hover {
+    background: $monitore-button-black-hover;
+    border-radius: 8px;
+  }
 }

@@ -14,7 +14,7 @@ const SideBar = () => {
         <img src={monitoreLogo} alt="Logo monitore" />
       </div>
       <nav className="containerButtons">
-        <ul className="containerLinks">
+        <div className="containerLinks">
           <NavLink
             to="/home"
             className={({ isActive }) =>
@@ -53,7 +53,7 @@ const SideBar = () => {
               iconLeft={iconPerfil}
             />
           </NavLink>
-        </ul>
+        </div>
         <div className="containerExit">
           <Button
             className="sideBarButton"
