@@ -19,6 +19,13 @@
   width: 179px;
   height: 50px;
   padding: 8px;
+  &:hover {
+    background: $monitore-brown-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown-hover;
+    background: $monitore-brown-press;
+  }
 }
 
 .largeButton {
@@ -26,14 +33,29 @@
   width: 202px;
   height: 50px;
   padding: 8px;
+  &:hover {
+    background: $monitore-brown-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown-hover;
+    background: $monitore-brown-press;
+  }
 }
 
 .transparentButton {
+  justify-content: center;
   gap: 8px;
   width: 134px;
   height: 50px;
   padding: 8px;
   background: none;
+  &:hover {
+    background: $monitore-brown;
+  }
+  &:active {
+    border: 2px solid $monitore-brown;
+    background: $monitore-light-brown-press;
+  }
 }
 
 .sideBarButton {
@@ -52,4 +74,11 @@
   padding: 8px 16px;
   background: #efefef;
   color: $monitore-brown;
+  &:hover {
+    background: $monitore-white-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown;
+    background: $monitore-white-hover;
+  }
 }
