@@ -1,4 +1,5 @@
 import "./App.scss";
+import Climate from "./screens/ExampleScreen/Climate";
 import Home from "./screens/ExampleScreen/Home";
 import Login from "./screens/ExampleScreen/Login";
 import Plot from "./screens/ExampleScreen/Plot";
@@ -10,7 +11,8 @@ function App() {
       {/* <Login />
       <Home /> */}
       {/* <Profile /> */}
-      <Plot />
+      {/* <Plot /> */}
+      <Climate />
     </>
   );
 }
