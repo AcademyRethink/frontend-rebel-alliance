@@ -36,14 +36,14 @@ export const DataWeather = () => {
   return (
     <>
       <div className="containerDateAndLocal">
-        <time>{GetDay()}</time>
+        <time>{getDay()}</time>
         <address>
           {farm?.address.city}, {farm?.address.state}, Brazil
         </address>
       </div>
       <div className="containerWeather">
         <div className="containerHourAndTemp">
-          <span>13:30</span>
+          <span>{getHour()}</span>
           <img src={separator} alt="separador" />
           <div className="temperature">
             <span>{firstWeatherItem?.temp.day.toFixed(0)}</span>
@@ -71,7 +71,7 @@ export const DataWeather = () => {
   );
 };
 
-export const GetDay = (): string => {
+const getDay = (): string => {
   const dayOfWeek: string[] = [
     "Domingo",
     "Segunda-feira",
@@ -102,4 +102,11 @@ export const GetDay = (): string => {
   const year: number = today.getFullYear();
 
   return `${dayOfWeekText}, ${day} de ${monthText} de ${year}`;
+};
+
+const getHour = () => {
+  const today: Date = new Date();
+  const hours: number = today.getHours();
+  const minutes: number = today.getMinutes();
+  return `${hours}:${minutes}`;
 };
