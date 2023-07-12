@@ -5,7 +5,7 @@ import { Farm } from "../types/farmTypes";
 export async function getWeatherByCity(
   city: string | undefined
 ): Promise<HourlyWeather> {
-  const response = await api.get(`weather/daily?city=${city}`);
+  const response = await api.get(`weather/hourly?city=${city}`);
   return response.data;
 }
 

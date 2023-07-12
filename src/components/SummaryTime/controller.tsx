@@ -51,7 +51,7 @@ export const DataWeather = () => {
           <span>{getHour()}</span>
           <img src={separator} alt="separador" />
           <div className="temperature">
-            <span>{firstWeatherItem?.temp.day.toFixed(0)}</span>
+            <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
             <sup className="celsiusSymbol">°C</sup>
           </div>
         </div>
@@ -61,11 +61,11 @@ export const DataWeather = () => {
             <li>
               Chuva: {firstWeatherItem?.pop ? firstWeatherItem.pop * 100 : 0} %
             </li>
-            <li>Umidade: {firstWeatherItem?.humidity} %</li>
+            <li>Umidade: {firstWeatherItem?.main.humidity} %</li>
             <li>
               Vento:
-              {firstWeatherItem?.speed
-                ? (firstWeatherItem.speed * 3.6).toFixed(1)
+              {firstWeatherItem?.wind.speed
+                ? (firstWeatherItem.wind.speed * 3.6).toFixed(1)
                 : 0}
               km/h
             </li>
