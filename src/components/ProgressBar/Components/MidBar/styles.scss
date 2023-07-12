@@ -1,0 +1,12 @@
+@import "../../../../utils/variables";
+
+.MidBarActive {
+  height: 12px;
+  width: 68px;
+  background-color: $monitore-green-progress-bar;
+}
+.MidBarInactive {
+  height: 12px;
+  width: 68px;
+  background-color: $monitore-light-green;
+}

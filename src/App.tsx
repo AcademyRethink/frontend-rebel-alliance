@@ -1,7 +1,12 @@
 import "./App.scss";
+import ProgressBar from "./components/ProgressBar";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <ProgressBar />
+    </>
+  );
 }
 
 export default App;
