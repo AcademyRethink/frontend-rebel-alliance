@@ -1,44 +1,12 @@
 import { Skeleton } from "@mui/material";
 import "./styles.scss";
+import SideBar from "../SideBar";
 
 const Home = () => {
   return (
     <div className="cointainerHome">
-      <div className="sideBar">
-        <Skeleton
-          variant="rounded"
-          sx={{ bgcolor: "grey.400" }}
-          width={124}
-          height={51}
-        />
-        <div className="linksSideBar">
-          <Skeleton
-            variant="rectangular"
-            sx={{ bgcolor: "grey.400" }}
-            width={187}
-            height={42}
-          />
-          <Skeleton
-            variant="rectangular"
-            sx={{ bgcolor: "grey.400" }}
-            width={187}
-            height={42}
-          />
-          <Skeleton
-            variant="rectangular"
-            sx={{ bgcolor: "grey.400" }}
-            width={187}
-            height={42}
-          />
-        </div>
-        <Skeleton
-          variant="rectangular"
-          sx={{ bgcolor: "grey.400" }}
-          width={187}
-          height={42}
-        />
-      </div>
-      <div className="mainContent">
+      <SideBar />
+      <div className="mainContentHome">
         <div>
           <Skeleton
             variant="text"
