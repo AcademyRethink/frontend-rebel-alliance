@@ -24,6 +24,11 @@ export const DataWeather = () => {
     };
 
     fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 60000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const { weather, farm } = data;
@@ -107,6 +112,6 @@ const getDay = (): string => {
 const getHour = () => {
   const today: Date = new Date();
   const hours: number = today.getHours();
-  const minutes: number = today.getMinutes();
+  const minutes: string = today.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;
 };
