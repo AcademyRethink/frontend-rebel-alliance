@@ -15,6 +15,7 @@ const TextInput = ({
       <input
         type="text"
         className={className}
+        id={className}
         placeholder={placeHolder}
         value={value}
         onChange={onChange}
