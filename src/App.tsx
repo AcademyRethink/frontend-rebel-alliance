@@ -8,10 +8,10 @@ import Profile from "./screens/ExampleScreen/Profile";
 function App() {
   return (
     <>
-      {/* <Login />
-      <Home /> */}
-      {/* <Profile /> */}
-      {/* <Plot /> */}
+      <Login />
+      <Home />
+      <Profile />
+      <Plot />
       <Climate />
     </>
   );
