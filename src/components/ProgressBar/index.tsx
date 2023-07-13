@@ -3,7 +3,7 @@ import { ProgressBarComponentProps } from "../../types/progressBarTypes";
 import "./styles.scss";
 
 const ProgressBar = ({
-  className,
+  className = "ProgressBarDefault",
   stages,
   actualStageOrder,
 }: ProgressBarComponentProps) => {

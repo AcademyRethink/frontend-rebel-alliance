@@ -68,7 +68,18 @@ export const buildProgressBar = (
   }
 
   for (let i = actualStageOrder + 1; i <= totalStages; i++) {
-    if (i == totalStages) {
+    if (actualStageOrder == 0 && i == 1) {
+      progressBar.push(
+        <StageMarker
+          className="StageMarkerInitalInactive"
+          orderOfStage={stagesSort[0].order}
+          key={stagesSort[0].id}
+        />
+      );
+      progressBar.push(
+        <MidBar className="MidBarInactive" key={stagesSort[i - 1].id} />
+      );
+    } else if (i == totalStages) {
       progressBar.push(
         <StageMarker
           className="StageMarkerEndInactive"
