@@ -1,7 +1,12 @@
 import "./App.scss";
+import Graphic from "./components/Graphic/";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Graphic />
+    </>
+  );
 }
 
 export default App;
