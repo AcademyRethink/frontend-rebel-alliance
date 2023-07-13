@@ -4,6 +4,8 @@ import { getFarmById } from "../../services/weather";
 import { HourlyWeather } from "../../types/weatherTypes";
 import { Farm } from "../../types/farmTypes";
 import separator from "./../../assets/separator.svg";
+import DayController from "./dayController";
+import HourController from "./hourController";
 
 export const DataWeather = () => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
@@ -24,11 +26,6 @@ export const DataWeather = () => {
     };
 
     fetchData();
-    const interval = setInterval(() => {
-      fetchData();
-    }, 60000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const { weather, farm } = data;
@@ -41,14 +38,18 @@ export const DataWeather = () => {
   return (
     <>
       <div className="containerDateAndLocal">
-        <time>{getDay()}</time>
+        <time>
+          <DayController />
+        </time>
         <address>
           {farm?.address.city}, {farm?.address.state}, Brazil
         </address>
       </div>
       <div className="containerWeather">
         <div className="containerHourAndTemp">
-          <span>{getHour()}</span>
+          <span>
+            <HourController />
+          </span>
           <img src={separator} alt="separador" />
           <div className="temperature">
             <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
@@ -74,44 +75,4 @@ export const DataWeather = () => {
       </div>
     </>
   );
-};
-
-const getDay = (): string => {
-  const dayOfWeek: string[] = [
-    "Domingo",
-    "Segunda-feira",
-    "Terça-feira",
-    "Quarta-feira",
-    "Quinta-feira",
-    "Sexta-feira",
-    "Sábado",
-  ];
-  const month: string[] = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ];
-  const today: Date = new Date();
-  const dayOfWeekText: string = dayOfWeek[today.getDay()];
-  const day: number = today.getDate();
-  const monthText: string = month[today.getMonth()];
-  const year: number = today.getFullYear();
-
-  return `${dayOfWeekText}, ${day} de ${monthText} de ${year}`;
-};
-
-const getHour = () => {
-  const today: Date = new Date();
-  const hours: number = today.getHours();
-  const minutes: string = today.getMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
 };
