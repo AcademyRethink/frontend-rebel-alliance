@@ -4,6 +4,7 @@
   position: relative;
   width: 40px;
   height: 40px;
+
   #rightActive {
     position: absolute;
     top: 14px;
@@ -25,18 +26,18 @@
   #leftActive {
     position: absolute;
     top: 14px;
-    left: 0px;
+    left: -1px;
     height: 12px;
-    width: 2px;
+    width: 3px;
     background-color: $monitore-green-progress-bar;
   }
 
   #leftInactive {
     position: absolute;
     top: 14px;
-    left: 0px;
+    left: -1px;
     height: 12px;
-    width: 2px;
+    width: 3px;
     background-color: $monitore-light-green;
   }
 }

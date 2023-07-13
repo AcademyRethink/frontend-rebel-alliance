@@ -11,11 +11,9 @@ export type StagesWithName = {
   order: number;
 };
 
-export type StageMarkerProps = { className: string; orderOfStage: number };
+export type StageMarkerProps = {
+  className: string;
+  orderOfStage: number;
+};
 
 export type MidBarProps = { className: string };
-
-export type RenderProgressBarProps = {
-  stages: StagesWithName[];
-  actualStageOrder: number;
-};

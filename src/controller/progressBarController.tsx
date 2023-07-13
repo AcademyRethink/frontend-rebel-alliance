@@ -1,14 +1,19 @@
 import MidBar from "../components/ProgressBar/Components/MidBar";
 import StageMarker from "../components/ProgressBar/Components/StageMarker";
-import { RenderProgressBarProps } from "../types/progressBarTypes";
+import { StagesWithName } from "../types/progressBarTypes";
 
-export const renderProgressBar = ({
-  stages,
-  actualStageOrder,
-}: RenderProgressBarProps) => {
+export const buildProgressBar = (
+  stages: StagesWithName[],
+  actualStageOrder: number
+): [JSX.Element[], string[]] => {
   const stagesSort = stages.sort((a, b) => a.order - b.order);
   const progressBar = [];
   const totalStages = stagesSort.length;
+
+  if (actualStageOrder > totalStages)
+    throw new Error(
+      "the actual stage value is greater than the last recorded stage"
+    );
 
   for (let i = 1; i <= actualStageOrder; i++) {
     if (i == 1) {
@@ -86,5 +91,5 @@ export const renderProgressBar = ({
     }
   }
 
-  return progressBar;
+  return [progressBar, stagesSort.map((stage) => stage.stage)];
 };
