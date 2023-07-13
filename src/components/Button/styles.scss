@@ -1,6 +1,6 @@
 @import "./../../utils/variables";
 
-.defaultButton{ 
+.defaultButton {
   display: flex;
   align-items: center;
   border: none;
@@ -10,9 +10,8 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: monitore-white;
+  color: $monitore-white;
   background: $monitore-brown;
-
 }
 
 .normalButton {
@@ -20,37 +19,66 @@
   width: 179px;
   height: 50px;
   padding: 8px;
+  &:hover {
+    background: $monitore-brown-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown-hover;
+    background: $monitore-brown-press;
+  }
 }
 
-.largeButton{
+.largeButton {
   justify-content: space-around;
   width: 202px;
   height: 50px;
   padding: 8px;
+  &:hover {
+    background: $monitore-brown-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown-hover;
+    background: $monitore-brown-press;
+  }
 }
 
 .transparentButton {
-  gap:8px;
+  justify-content: center;
+  gap: 8px;
   width: 134px;
   height: 50px;
   padding: 8px;
   background: none;
+  &:hover {
+    background: $monitore-brown;
+  }
+  &:active {
+    border: 2px solid $monitore-brown;
+    background: $monitore-light-brown-press;
+  }
 }
 
-.sideBarButton { 
-  gap:8px;
+.sideBarButton {
+  gap: 8px;
   width: 187px;
   height: 50px;
   padding: 8px 32px 8px 8px;
   background: none;
 }
 
-.filterButton { 
+.filterButton {
   justify-content: space-between;
-  gap:8px;
+  gap: 8px;
   width: 202px;
   height: 50px;
   padding: 8px 16px;
-  background: #EFEFEF;
-  color: $monitore-brown; 
+  background: #efefef;
+  color: $monitore-brown;
+  &:hover {
+    background: $monitore-white-hover;
+  }
+  &:active {
+    border: 2px solid $monitore-brown;
+    background: $monitore-white-hover;
+  }
 }

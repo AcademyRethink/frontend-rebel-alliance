@@ -3,5 +3,5 @@ export type ButtonProps = {
   text: string;
   iconLeft?: string;
   iconRight?: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
