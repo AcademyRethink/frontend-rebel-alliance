@@ -4,6 +4,9 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import type { ChartData, ChartOptions } from "chart.js";
 import "./styles.scss";
 import { GraphicProps } from "../../types/graphicTypes";
+import { useState, useEffect } from "react";
+import { getWeatherByCity } from "../../services/weather";
+import { getFarmById } from "../../services/weather";
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
@@ -16,21 +19,41 @@ const Graphic = ({
   maxY,
   increment,
 }: GraphicProps) => {
+  const [hours, setHours] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const farmResponse = await getFarmById(26);
+        const weatherResponse = await getWeatherByCity(
+          farmResponse?.address?.city
+        );
+
+        if (weatherResponse.list) {
+          const gruopHours = weatherResponse.list
+            .filter((_, index) => index === 0 || index % 2 === 0)
+            .map((hourData) => {
+              const dtInMilliseconds = hourData.dt * 1000;
+              const dtObject = new Date(dtInMilliseconds);
+              return dtObject.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+            })
+            .slice(0, 12);
+
+          setHours(gruopHours);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const data: ChartData<"line"> = {
-    labels: [
-      "12H",
-      "14H",
-      "16H",
-      "18H",
-      "20H",
-      "22H",
-      "24H",
-      "02H",
-      "06H",
-      "08H",
-      "10H",
-      "12H",
-    ],
+    labels: hours,
 
     datasets: [
       {
