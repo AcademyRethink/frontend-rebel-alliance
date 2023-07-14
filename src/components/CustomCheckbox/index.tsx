@@ -1,10 +1,24 @@
 import { CustomCheckboxProps } from "../../types/customCheckboxTypes";
 import "./styles.scss";
 
-const CustomCheckbox = ({ className, label }: CustomCheckboxProps) => {
+const CustomCheckbox = ({
+  label,
+  disabled,
+  checked,
+  onChange,
+}: CustomCheckboxProps) => {
+  const id = Math.random();
+  console.log(id);
   return (
-    <div className="CustomCheckboxContainer">
-      <label htmlFor="">{label}</label>
+    <div className={disabled ? "checkboxDisabled" : "checkboxDefault"}>
+      <input
+        type="checkbox"
+        id={`${id}`}
+        onChange={onChange}
+        disabled={disabled ? disabled : undefined}
+        checked={checked ? checked : undefined}
+      />
+      <label htmlFor={`${id}`}>{label}</label>
     </div>
   );
 };
