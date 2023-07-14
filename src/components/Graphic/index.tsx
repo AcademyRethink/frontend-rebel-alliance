@@ -3,11 +3,19 @@ import { Chart, registerables } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import type { ChartData, ChartOptions } from "chart.js";
 import "./styles.scss";
+import { GraphicProps } from "../../types/graphicTypes";
 
 Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
-const Graphic = () => {
+const Graphic = ({
+  chartData,
+  backgroundColor,
+  unit,
+  minY,
+  maxY,
+  increment,
+}: GraphicProps) => {
   const data: ChartData<"line"> = {
     labels: [
       "12H",
@@ -26,28 +34,26 @@ const Graphic = () => {
 
     datasets: [
       {
-        label: "Chuva",
-        data: [27, 28, 28, 27, 28, 39, 30, 27, 26, 25, 26, 29],
-        backgroundColor: "#004CBD",
-        borderColor: "#004CBD",
-        pointBorderColor: "white",
+        data: chartData,
+        backgroundColor: backgroundColor,
+        borderColor: backgroundColor,
+        pointBorderColor: "#FFFFFF",
         tension: 0.0, //curva ou reto
         pointRadius: 5, //tamanho da bolinha
       },
     ],
   };
 
-  function formatPercentage(value: { toString: () => string }) {
-    return value.toString() + "%";
+  function formatY(value: { toString: () => string }, unit: string) {
+    return value.toString() + unit;
   }
 
   const options: ChartOptions<"line"> = {
     maintainAspectRatio: false, // Permite ajustar o tamanho do gráfico de acordo com o contêiner
     responsive: true, // Permite que o gráfico seja responsivo
+
     scales: {
       x: {
-        min: 0, // Valor mínimo da escala horizontal
-        max: 100, // Valor máximo da escala horizontal
         grid: {
           display: false, // Remove a grade da escala x
         },
@@ -59,11 +65,11 @@ const Graphic = () => {
         },
       },
       y: {
-        min: 0, // Valor mínimo da escala vertical
-        max: 50, // Valor máximo da escala vertical
+        min: minY, // Valor mínimo da escala vertical
+        max: maxY, // Valor máximo da escala vertical
         ticks: {
-          stepSize: 10, // Define o incremento para 10 em 10
-          callback: formatPercentage,
+          stepSize: increment, // Define o incremento para 10 em 10
+          callback: (value: { toString: () => string }) => formatY(value, unit),
           font: {
             size: 12.106, // Define o tamanho da fonte do eixo y
           },
