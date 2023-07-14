@@ -5,6 +5,10 @@ import { getHarvestByPlantingID } from "../../service/harvests";
 import { Harvest } from "../../types/harvestsTypes";
 import HarvestItem from "../Item/HarvestItem";
 
+const makeDateOutput = (date: string) => {
+  return `${date.slice(8, 10)}/${date.slice(5, 7)}/${date.slice(0, 4)}`;
+};
+
 const HarvestHistory = ({ plantingID }: HarvestHistoryProps) => {
   const [harvests, setHarvests] = useState<Harvest[]>([]);
 
@@ -22,7 +26,7 @@ const HarvestHistory = ({ plantingID }: HarvestHistoryProps) => {
       {harvests.map((harvest) => (
         <HarvestItem
           key={harvest.id}
-          date={harvest.date.slice(0, 10)}
+          date={makeDateOutput(harvest.date)}
           bags={String(harvest.bags)}
         />
       ))}
