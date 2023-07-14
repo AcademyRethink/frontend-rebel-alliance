@@ -6,6 +6,7 @@ import { Farm } from "../../types/farmTypes";
 import separator from "./../../assets/separator.svg";
 import DayController from "./dayController";
 import HourController from "./hourController";
+import iconLocation from "./../../assets/iconLocation.svg";
 
 export const DataWeather = () => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
@@ -42,6 +43,7 @@ export const DataWeather = () => {
           <DayController />
         </time>
         <address>
+          <img src={iconLocation} alt="Icone de localização" />
           {farm?.address.city}, {farm?.address.state}, Brazil
         </address>
       </div>
