@@ -4,7 +4,7 @@ import { ColumnProps } from "../../../types/itemTypes";
 const Column = ({ title, text }: ColumnProps) => {
   return (
     <div className="columnContainer">
-      <h1>{title}</h1>
+      <h3>{title}</h3>
       <p>{text}</p>
     </div>
   );

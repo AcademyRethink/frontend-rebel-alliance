@@ -11,14 +11,12 @@ const PlotItem = ({
   harvests,
 }: PlotItemProps) => {
   return (
-    <div className="plotItemContainer">
-      <div className={`itemContainer ${className}`}>
-        <Column title="Talhão" text={plotName} />
-        <Column title="Data" text={date} />
-        <Column title="Mudas" text={saplings} />
-        <Column title="Fase" text={stage} />
-        <Column title="Colheitas" text={harvests} />
-      </div>
+    <div className={`itemContainer ${className}`}>
+      <Column title="Talhão" text={plotName} />
+      <Column title="Data" text={date} />
+      <Column title="Mudas" text={saplings} />
+      <Column title="Fase" text={stage} />
+      <Column title="Colheitas" text={harvests} />
     </div>
   );
 };
