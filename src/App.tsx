@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Graphic
-        chartData={[20, 25, 22, 23, 25, 31, 12, 25, 25, 25, 25, 12]}
+        chartData={"rain"}
         backgroundColor="#004CBD"
         unit="%"
         minY={0}
@@ -17,7 +17,7 @@ function App() {
         increment={10}
       />
       <Graphic
-        chartData={[20, 25, 22, 23, 25, 31, 12, 25, 25, 25, 25, 12]}
+        chartData={"wind"}
         backgroundColor="#1F78FF"
         unit="km"
         minY={0}
@@ -25,7 +25,7 @@ function App() {
         increment={10}
       />
       <Graphic
-        chartData={[20, 25, 22, 23, 25, 31, 12, 25, 25, 25, 25, 12]}
+        chartData={"temp"}
         backgroundColor="#ECA900"
         unit="°"
         minY={0}

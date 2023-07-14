@@ -20,7 +20,11 @@ const Graphic = ({
   increment,
 }: GraphicProps) => {
   const [hours, setHours] = useState<string[]>([]);
-
+  const [dataWeather, setDataWeather] = useState<{
+    temp?: number[];
+    rain?: number[];
+    wind?: number[];
+  }>({});
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,7 +32,15 @@ const Graphic = ({
         const weatherResponse = await getWeatherByCity(
           farmResponse?.address?.city
         );
-
+        setDataWeather({
+          temp: weatherResponse.list?.map((hour) =>
+            Number(hour.main.temp.toFixed(1))
+          ),
+          rain: weatherResponse.list?.map((hour) => hour.pop * 100),
+          wind: weatherResponse.list?.map((hour) =>
+            Number((hour.wind.speed * 3.6).toFixed(1))
+          ),
+        });
         if (weatherResponse.list) {
           const gruopHours = weatherResponse.list
             .filter((_, index) => index === 0 || index % 2 === 0)
@@ -57,7 +69,7 @@ const Graphic = ({
 
     datasets: [
       {
-        data: chartData,
+        data: dataWeather[chartData] || [],
         backgroundColor: backgroundColor,
         borderColor: backgroundColor,
         pointBorderColor: "#FFFFFF",
@@ -90,6 +102,7 @@ const Graphic = ({
       y: {
         min: minY, // Valor mínimo da escala vertical
         max: maxY, // Valor máximo da escala vertical
+        offset: true, //Espaçamento entre a linha e a escala // ver vini e ana
         ticks: {
           stepSize: increment, // Define o incremento para 10 em 10
           callback: (value: { toString: () => string }) => formatY(value, unit),
