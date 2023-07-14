@@ -1,4 +1,5 @@
 export type HarvestHistoryProps = {
+  className?: string;
   plantingID: number;
 };
 
