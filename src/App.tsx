@@ -1,7 +1,12 @@
 import "./App.scss";
+import SummaryTime from "./components/SummaryTime";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <SummaryTime />
+    </>
+  );
 }
 
 export default App;

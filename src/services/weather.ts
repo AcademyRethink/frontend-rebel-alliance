@@ -10,6 +10,6 @@ export async function getWeatherByCity(
 }
 
 export async function getFarmById(id: number): Promise<Farm> {
-  const response = await api.get(`http://localhost:3000/farms/${id}`);
+  const response = await api.get(`/farms/${id}`);
   return response.data;
 }

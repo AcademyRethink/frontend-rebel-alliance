@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://verce-rebel-alliance.vercel.app/",
+  baseURL: "https://backend-rebel-alliance.vercel.app/",
 });
 
 export default api;
