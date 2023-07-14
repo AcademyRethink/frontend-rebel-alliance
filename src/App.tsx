@@ -1,16 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import Title from "./components/Title";
+import Home from "./pages/Home";
+import Climate from "./pages/Climate";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <>
-      <Title
-        text="Teste"
-        fontSize="40px"
-        fontWeight="700"
-        hasLine={true}
-        hasIcon={true}
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" />
+          <Route path="/home" element={<Home />} />
+          <Route path="/plantio/:id" />
+          <Route path="/clima" element={<Climate />} />
+          <Route path="/perfil" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
