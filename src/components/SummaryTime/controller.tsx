@@ -7,6 +7,20 @@ import separator from "./../../assets/separator.svg";
 import DayController from "./dayController";
 import HourController from "./hourController";
 import iconLocation from "./../../assets/iconLocation.svg";
+import raining from "../../assets/weatherCard/raining.svg";
+import storm from "../../assets/weatherCard/storm.svg";
+import clouds from "../../assets/weatherCard/clouds.svg";
+import cloudsSun from "../../assets/weatherCard/cloudSun.svg";
+import suny from "../../assets/weatherCard/suny.svg";
+
+const allClimate = {
+  algumas: cloudsSun,
+  nublado: clouds,
+  nuvens: cloudsSun,
+  Rain: raining,
+  Clear: suny,
+  Extreme: storm,
+};
 
 export const DataWeather = ({ resume }: { resume: boolean }) => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
@@ -35,6 +49,11 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
     return null;
   }
   const firstWeatherItem = weather.list?.[0];
+
+  const climate =
+    firstWeatherItem?.weather[0].main == "Clouds"
+      ? firstWeatherItem.weather[0].description.split(" ")[0]
+      : firstWeatherItem?.weather[0].main;
 
   if (resume) {
     return (
@@ -105,9 +124,24 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
           </div>
         </div>
         <div className="temperaturePageClimate">
-          <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
-          <sup>°C</sup>
-          <p>{firstWeatherItem?.weather[0]?.description}</p>
+          <div>
+            <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
+            <sup>°C</sup>
+            <p>{firstWeatherItem?.weather[0]?.description}</p>
+          </div>
+          <img
+            src={
+              climate === "algumas" ||
+              climate === "nublado" ||
+              climate === "nuvens" ||
+              climate === "Rain" ||
+              climate === "Clear" ||
+              climate === "Extreme"
+                ? allClimate[climate]
+                : allClimate["Clear"]
+            }
+            alt="icone de clima"
+          />
         </div>
       </div>
     </>
