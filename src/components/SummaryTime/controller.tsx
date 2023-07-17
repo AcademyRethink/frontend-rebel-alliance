@@ -98,40 +98,42 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
   }
   return (
     <>
-      <div className="containerWeatherPageClimate">
-        <div className="containerInformationTime">
-          <span>
-            <HourController />
-          </span>
-          <div className="containerDateAndLocalPageClimate">
-            <time>
-              <DayController resume={true} />
-            </time>
-            <address>
-              <img src={iconLocation} alt="Icone de localização" />
-              {farm?.address.city}, {farm?.address.state}, Brazil
-            </address>
+      <div className="background">
+        <div className="containerWeatherPageClimate">
+          <div className="containerInformationTime">
+            <span>
+              <HourController />
+            </span>
+            <div className="containerDateAndLocalPageClimate">
+              <time>
+                <DayController resume={true} />
+              </time>
+              <address>
+                <img src={iconLocation} alt="Icone de localização" />
+                {farm?.address.city}, {farm?.address.state}, Brazil
+              </address>
+            </div>
           </div>
-        </div>
-        <div className="temperaturePageClimate">
-          <div>
-            <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
-            <sup>°C</sup>
-            <p>{firstWeatherItem?.weather[0]?.description}</p>
+          <div className="temperaturePageClimate">
+            <div>
+              <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
+              <sup>°C</sup>
+              <p>{firstWeatherItem?.weather[0]?.description}</p>
+            </div>
+            <img
+              src={
+                climate === "algumas" ||
+                climate === "nublado" ||
+                climate === "nuvens" ||
+                climate === "Rain" ||
+                climate === "Clear" ||
+                climate === "Extreme"
+                  ? allClimate[climate]
+                  : allClimate["Clear"]
+              }
+              alt="icone de clima"
+            />
           </div>
-          <img
-            src={
-              climate === "algumas" ||
-              climate === "nublado" ||
-              climate === "nuvens" ||
-              climate === "Rain" ||
-              climate === "Clear" ||
-              climate === "Extreme"
-                ? allClimate[climate]
-                : allClimate["Clear"]
-            }
-            alt="icone de clima"
-          />
         </div>
       </div>
     </>
