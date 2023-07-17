@@ -105,7 +105,7 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
           </span>
           <div className="containerDateAndLocalPageClimate">
             <time>
-              <DayController />
+              <DayController resume={true} />
             </time>
             <address>
               <img src={iconLocation} alt="Icone de localização" />

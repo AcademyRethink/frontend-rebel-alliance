@@ -1,0 +1,38 @@
+@import "../../utils/variables";
+
+.pageClimateContainer {
+    display: flex;
+
+    .climateDataContainer {
+        margin-left: 235px;
+        width: 100%;
+        padding: 0px 32px 48px;
+    
+        .climateTitle {
+            position: fixed;
+            width: 100%;
+            height: 96px;
+
+            display: flex;
+            align-items: flex-end;
+
+            background-color: white;
+        }
+
+        .climateData {
+            margin-top: 160px;
+            display: flex;
+            gap: 32px;
+
+            .mainInfos {
+                width: 100%;
+                flex: 2.5;
+            }
+
+            .weekData {
+                flex: 1;
+            }
+        }
+    }
+
+}
