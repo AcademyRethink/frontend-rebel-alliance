@@ -59,6 +59,8 @@ Abra http://localhost:5173 no seu navegador
 ### Tecnologias utilizadas 
 - [Node](https://nodejs.org/en)
 - [Typescrit](https://www.typescriptlang.org/)
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [SASS](https://sass-lang.com/)
 - [React](https://react.dev/)
 - [Char.JS](https://www.chartjs.org/)
 
