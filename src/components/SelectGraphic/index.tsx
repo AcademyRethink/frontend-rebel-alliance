@@ -55,8 +55,8 @@ const SelectGraphic = () => {
         {selectedGraphic === "vento" && (
           <Graphic
             chartData={"wind"}
-            backgroundColor="#1F78FF"
-            unit="km"
+            backgroundColor="#027A00"
+            unit="km/h"
             minY={0}
             maxY={40}
             increment={10}

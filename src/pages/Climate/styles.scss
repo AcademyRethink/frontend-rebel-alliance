@@ -1,47 +1,46 @@
 @import "../../utils/variables";
 
 .pageClimateContainer {
-    display: flex;
+  display: flex;
 
-    .climateDataContainer {
-        margin-left: 235px;
-        width: 100%;
-        padding: 0px 32px 48px;
-    
-        .climateTitle {
-            position: fixed;
-            width: 100%;
-            height: 96px;
+  .climateDataContainer {
+    margin-left: 235px;
+    width: 100%;
+    padding: 0px 32px 48px;
 
-            display: flex;
-            align-items: flex-end;
+    .climateTitle {
+      position: fixed;
+      width: 100%;
+      height: 96px;
 
-            background-color: white;
-        }
+      display: flex;
+      align-items: flex-end;
 
-        .climateData {
-            margin-top: 150px;
-            display: flex;
-            gap: 32px;
-
-            .mainInfos {
-                width: 100%;
-                flex: 2.5;
-
-                display: flex;
-                flex-direction: column;
-                gap: 32px;
-
-                .graphic {
-                    height: 581px;
-                    border-radius: 8px;
-                }
-            }
-
-            .weekData {
-                flex: 1;
-            }
-        }
+      background-color: white;
     }
 
+    .climateData {
+      margin-top: 150px;
+      display: flex;
+      gap: 32px;
+
+      .mainInfos {
+        width: 100%;
+        flex: 2.5;
+
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .graphic {
+          height: 581px;
+          border-radius: 8px;
+        }
+      }
+
+      .weekData {
+        flex: 1;
+      }
+    }
+  }
 }
