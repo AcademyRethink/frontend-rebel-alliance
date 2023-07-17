@@ -41,7 +41,7 @@ type DayData = {
   rain?: number;
 };
 
-type HourData = {
+export type HourData = {
   dt: number;
   main: {
     temp: number;
