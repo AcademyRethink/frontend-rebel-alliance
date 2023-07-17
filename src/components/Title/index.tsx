@@ -12,12 +12,17 @@ const Title = ({
 }: TitleProps) => {
   return (
     <div className="containerTitle">
-      {hasIcon && (
-        <NavLink to="/home">
-          <img src={iconArrow} alt="icone para voltar" />
-        </NavLink>
-      )}
-      <h1 style={{ fontSize: fontSize, fontWeight: fontWeight }}>{text}</h1>
+      <div className="containerButtonAndTitle">
+        {hasIcon && (
+          <NavLink to="/home">
+            <div className="containerArrow">
+              <img src={iconArrow} alt="icone para voltar" />
+            </div>
+          </NavLink>
+        )}
+        <h1 style={{ fontSize: fontSize, fontWeight: fontWeight }}>{text}</h1>
+      </div>
+
       {hasLine && <div className="lineTitle"></div>}
     </div>
   );
