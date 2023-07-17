@@ -1,10 +1,10 @@
 import "./styles.scss";
 import { DataWeather } from "./controller";
-const SummaryTime = () => {
+const SummaryTime = ({ resume }: { resume: boolean }) => {
   return (
-    <div className="containerSummaryTime">
-      <DataWeather />
-    </div>
+    <>
+      <DataWeather resume={resume} />
+    </>
   );
 };
 
