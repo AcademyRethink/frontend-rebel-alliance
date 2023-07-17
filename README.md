@@ -21,7 +21,7 @@ Desenvolvimento de interface para dashboard a fim gerenciar as plantações de c
 - Gerenciamento de plantações (data, quantidade, fases)
 - Gerenciamento de colheitas da plantação
 - Pesquisa por talhão
-- Visualização dos dados climaticos de forma simplificada e detalhada
+- Visualização dos dados climáticos de forma simplificada e detalhada
 
 ### Iniciar 
 
