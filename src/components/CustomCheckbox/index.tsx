@@ -8,7 +8,6 @@ const CustomCheckbox = ({
   onChange,
 }: CustomCheckboxProps) => {
   const id = Math.random();
-  console.log(id);
   return (
     <div className={disabled ? "checkboxDisabled" : "checkboxDefault"}>
       <input
