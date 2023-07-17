@@ -1,10 +1,8 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Home from "./pages/Home";
 import Climate from "./pages/Climate";
 import Profile from "./pages/Profile";
-
 
 function App() {
   return (
