@@ -1,3 +1,10 @@
+export type DateObject = {
+  dayOfWeekText: string;
+  day: number;
+  monthText: string;
+  year: number;
+};
+
 type DayData = {
   dt: number;
   sunrise: number;

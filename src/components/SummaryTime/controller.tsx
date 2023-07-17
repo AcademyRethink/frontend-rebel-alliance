@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { getWeatherByCity } from "../../services/weather";
-import { getFarmById } from "../../services/weather";
 import { HourlyWeather } from "../../types/weatherTypes";
 import { Farm } from "../../types/farmTypes";
 import separator from "./../../assets/separator.svg";
 import DayController from "./dayController";
 import HourController from "./hourController";
 import iconLocation from "./../../assets/iconLocation.svg";
+import { fetchWeatherHourlyData } from "../../utils/weatherFunctions";
 import raining from "../../assets/weatherCard/raining.svg";
 import storm from "../../assets/weatherCard/storm.svg";
 import clouds from "../../assets/weatherCard/clouds.svg";
@@ -28,21 +27,12 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
   );
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const farmResponse = await getFarmById(26);
-        const weatherResponse = await getWeatherByCity(
-          farmResponse?.address?.city
-        );
-        setData({ farm: farmResponse, weather: weatherResponse });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
+    fetchWeatherHourlyData(26)
+      .then((response) =>
+        setData({ farm: response?.farm, weather: response?.weather })
+      )
+      .catch();
   }, []);
-
   const { weather, farm } = data;
 
   if (!weather || !farm) {
