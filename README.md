@@ -13,7 +13,7 @@
 
 ### Descrição do projeto 
 
-Desenvolvimento de uma interface de dashboard para gerenciar as plantações de café de uma determianda fazenda
+Desenvolvimento de interface para dashboard a fim gerenciar as plantações de café de uma determianda fazenda
 
 ### Funcionalidades 
 
