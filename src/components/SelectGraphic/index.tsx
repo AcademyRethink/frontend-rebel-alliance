@@ -58,7 +58,7 @@ const SelectGraphic = () => {
             backgroundColor="#1F78FF"
             unit="km"
             minY={0}
-            maxY={50}
+            maxY={40}
             increment={10}
           />
         )}

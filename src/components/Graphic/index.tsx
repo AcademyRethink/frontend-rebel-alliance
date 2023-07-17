@@ -124,7 +124,7 @@ const Graphic = ({
         },
       },
     },
-    layout: { padding: 20 },
+    layout: { padding: 5 },
   };
 
   return (

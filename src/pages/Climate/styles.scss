@@ -20,13 +20,22 @@
         }
 
         .climateData {
-            margin-top: 160px;
+            margin-top: 150px;
             display: flex;
             gap: 32px;
 
             .mainInfos {
                 width: 100%;
                 flex: 2.5;
+
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+
+                .graphic {
+                    height: 581px;
+                    border-radius: 8px;
+                }
             }
 
             .weekData {
