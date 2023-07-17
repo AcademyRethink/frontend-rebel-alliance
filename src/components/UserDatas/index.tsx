@@ -1,17 +1,33 @@
 import "./styles.scss";
-import UserInfo from "../UserInfo";
+import DataTableRow from "../DataTableRow";
+import { useEffect, useState } from "react";
+import { userById } from "../../services/users";
 
 const UserDatas = () => {
+  const [user, setUser] = useState();
+  const id = 1;
+
+  useEffect(() => {
+    userById(1)
+      .then((result) => {
+        console.log(result);
+        setUser(result);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+
   return (
     <div className="userDataContainer">
       <table>
-        <UserInfo title="Nome" text="user.name" />
-        <UserInfo title="CPF/CNPJ" text="zabauba" />
-        <UserInfo title="Data Nascimento" text="zabauba" />
-        <UserInfo title="Número de contato" text="zabauba" />
-        <UserInfo title="E-mail" text="zabauba" />
-        <UserInfo title="Senha" text="zabauba" />
-        <UserInfo title="Tipo de conta" text="zabauba" />
+        <DataTableRow title="Nome" text="{user.name}" />
+        <DataTableRow title="CPF/CNPJ" text="zabauba" />
+        <DataTableRow title="Data Nascimento" text="zabauba" />
+        <DataTableRow title="Número de contato" text="zabauba" />
+        <DataTableRow title="E-mail" text="zabauba" />
+        <DataTableRow title="Senha" text="zabauba" />
+        <DataTableRow title="Tipo de conta" text="zabauba" />
       </table>
     </div>
   );

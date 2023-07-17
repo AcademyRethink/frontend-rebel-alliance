@@ -1,5 +1,10 @@
 export type UserDataProperties = {
-  title: string;
-  name?: string;
-  text: string;
+  celphone: string;
+  cpf_cnpj: string;
+  email: string;
+  farm_id: number;
+  id: number;
+  name: string;
+  password: string;
+  userType: string;
 };
