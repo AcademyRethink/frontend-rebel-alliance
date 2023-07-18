@@ -3,10 +3,12 @@ import "./App.scss";
 import Home from "./pages/Home";
 import Climate from "./pages/Climate";
 import Profile from "./pages/Profile";
+import EditCard from "./components/EditCard";
 
 function App() {
   return (
     <>
+      <EditCard />
       <BrowserRouter>
         <Routes>
           <Route path="/" />

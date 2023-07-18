@@ -1,30 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import iconArrowGray from "./../../assets/iconArrowGray.svg";
 import iconArrowBrown from "./../../assets/IconArrowBrown.svg";
 import "./styles.scss";
-import { getStages } from "../../services/stages";
 
-const Dropdown = () => {
-  const [options, setOptions] = useState<Array<string>>([]);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string>();
+const Dropdown = ({ options, selectedOption, onSelect }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
+    onSelect(option);
     setIsOpen(false);
   };
+
   const handleSelectClick = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    getStages().then((response) => {
-      const sortedStages = response.sort((a, b) => a.order - b.order);
-      const stageName = sortedStages.map((stage) => stage.stage);
-      setOptions(stageName);
-      setSelectedOption(stageName[0]);
-    });
-  }, []);
 
   return (
     <div className="containerDropdown">
@@ -41,7 +30,7 @@ const Dropdown = () => {
       </div>
       {isOpen && (
         <div className="containerOptions">
-          {options.map((option) => (
+          {options.map((option: string) => (
             <div
               key={option}
               className="option"
