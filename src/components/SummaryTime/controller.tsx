@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HourlyWeather } from "../../types/weatherTypes";
+import { HourlyWeather, SummaryTimeType } from "../../types/weatherTypes";
 import { Farm } from "../../types/farmTypes";
 import separator from "./../../assets/separator.svg";
 import DayController from "./dayController";
@@ -21,18 +21,18 @@ const allClimate = {
   Extreme: storm,
 };
 
-export const DataWeather = ({ resume }: { resume: boolean }) => {
+export const DataWeather = ({ farmID, resume }: SummaryTimeType) => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
     {}
   );
 
   useEffect(() => {
-    fetchWeatherHourlyData(26)
+    fetchWeatherHourlyData(farmID)
       .then((response) =>
         setData({ farm: response?.farm, weather: response?.weather })
       )
       .catch();
-  }, []);
+  }, [farmID]);
   const { weather, farm } = data;
 
   if (!weather || !farm) {
