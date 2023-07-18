@@ -3,16 +3,16 @@ import { UserLoginProps } from "../types/authTypes";
 
 const loginUser = async (userData: UserLoginProps) => {
   try {
-    const response = await api.get("user/login", {
-      data: {
-        cpf_cnpj: "22222222222",
-        password: "jose1234",
-      },
-    });
+    const response = await api.post("users/login", userData);
     return response.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export default { loginUser };
+const getUserData = async (cpforcnpj: string) => {
+  const response = await api.get(`users/cpforcnpj/${cpforcnpj}`);
+  return response.data;
+};
+
+export default { loginUser, getUserData };

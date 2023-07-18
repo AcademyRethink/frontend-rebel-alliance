@@ -23,7 +23,7 @@ const TextInput = ({
         onChange={onChange}
         disabled={className === "Disable" ? true : false}
       />
-      {className === "Error" && errorMessage && <p>{errorMessage}</p>}
+      {className === "TextInputError" && errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };

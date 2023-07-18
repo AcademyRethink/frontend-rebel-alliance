@@ -6,14 +6,35 @@ import CustomCheckbox from "../../components/CustomCheckbox";
 import Button from "../../components/Button";
 import loginController from "../../controllers/loginController";
 import { useEffect, useState } from "react";
+// import jwt from "jsonwebtoken";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+// const mySecret = "default";
 
 const LoginScreen = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState();
+  const [token, setToken] = useState<any>();
+  const [errorMessage, setErrorMessage] = useState<any>();
+  const [stayLogged, setStayLogged] = useState(false);
 
   useEffect(() => {
-    console.log(token);
+    if (token) {
+      if (token.message) {
+        if (token.message === "User not Found") {
+          setErrorMessage({ message: token.message, type: "login" });
+        } else {
+          setErrorMessage({ message: token.message, type: "password" });
+        }
+      } else {
+        console.log(stayLogged);
+        if (stayLogged) {
+          // jwt.verify(token, mySecret);
+          localStorage.setItem("token", token);
+        }
+      }
+    }
   }, [token]);
   return (
     <div className="LoginPage">
@@ -24,16 +45,25 @@ const LoginScreen = () => {
         <div className="DataContainer">
           <h1>Bem Vindo!</h1>
           <Input
-            className="TextInputDefault"
+            className={
+              errorMessage?.type === "login"
+                ? "TextInputError"
+                : "TextInputDefault"
+            }
             label="CPF/CNPJ"
-            placeHolder="000.000.000-00"
+            placeHolder="Apenas números"
             value={user}
             onChange={(event) => {
-              setUser(event.target.value);
+              setUser(event.target.value.replace(/\D/g, ""));
             }}
+            errorMessage={errorMessage?.message}
           />
           <Input
-            className="TextInputDefault"
+            className={
+              errorMessage?.type === "password"
+                ? "TextInputError"
+                : "TextInputDefault"
+            }
             type="password"
             label="Senha"
             placeHolder="Digite sua senha aqui"
@@ -41,16 +71,20 @@ const LoginScreen = () => {
             onChange={(event) => {
               setPassword(event.target.value);
             }}
+            errorMessage={errorMessage?.message}
           />
-          <CustomCheckbox label="Manter Conectado" />
+          <CustomCheckbox
+            label="Manter Conectado"
+            onChange={(event) => {
+              setStayLogged(event.target.checked);
+            }}
+          />
 
           <Button
             text="Entrar"
             className="largeButton"
             iconRight={iconLogin}
             onClick={async () => {
-              console.log(user);
-              console.log(password);
               setToken(await loginController.getToken(user, password));
             }}
           />
