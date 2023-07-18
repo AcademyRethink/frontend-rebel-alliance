@@ -1,0 +1,19 @@
+@import "./../../utils/variables";
+
+.harvestHistoryContainer {
+  width: 437px;
+  height: 100vh;
+  padding: 24px;
+  background-color: $monitore-defaultBackground;
+  border-radius: 8px;
+
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .harvestHistoryItem {
+    gap: 25%;
+  }
+}
