@@ -12,6 +12,7 @@ Chart.register(...registerables);
 Chart.register(ChartDataLabels);
 
 const Graphic = ({
+  farmID,
   chartData,
   backgroundColor,
   unit,
@@ -28,7 +29,7 @@ const Graphic = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const farmResponse = await getFarmById(26);
+        const farmResponse = await getFarmById(farmID);
         const weatherResponse = await getWeatherByCity(
           farmResponse?.address?.city
         );
@@ -62,7 +63,7 @@ const Graphic = ({
     };
 
     fetchData();
-  }, []);
+  }, [farmID]);
 
   const data: ChartData<"line"> = {
     labels: hours,

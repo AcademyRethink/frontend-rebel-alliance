@@ -2,7 +2,7 @@ import "./styles.scss";
 import Graphic from "../Graphic";
 import { useState } from "react";
 
-const SelectGraphic = () => {
+const SelectGraphic = ({ farmID }: { farmID: number }) => {
   const [selectedGraphic, setSelectedGraphic] = useState<string>("chuva");
 
   const handleGraphicChange = (graphicType: string): void => {
@@ -34,6 +34,7 @@ const SelectGraphic = () => {
       <div className="selectedGraphic">
         {selectedGraphic === "temperatura" && (
           <Graphic
+            farmID={farmID}
             chartData={"temp"}
             backgroundColor="#ECA900"
             unit="°C"
@@ -44,6 +45,7 @@ const SelectGraphic = () => {
         )}
         {selectedGraphic === "chuva" && (
           <Graphic
+            farmID={farmID}
             chartData={"rain"}
             backgroundColor="#004CBD"
             unit="%"
@@ -54,6 +56,7 @@ const SelectGraphic = () => {
         )}
         {selectedGraphic === "vento" && (
           <Graphic
+            farmID={farmID}
             chartData={"wind"}
             backgroundColor="#027A00"
             unit="km/h"
