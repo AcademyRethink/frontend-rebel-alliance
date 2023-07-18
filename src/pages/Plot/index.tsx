@@ -21,9 +21,7 @@ const Plot = () => {
           <div className="plotData"></div>
           <div className="plotHistorys">
             <HarvestHistory className="harvestHistory" plantingID={10} />
-            <div className="plantingHistory">
-              <HarvestHistory plantingID={10} />
-            </div>
+            <HarvestHistory className="plantingHistory" plantingID={18} />
           </div>
         </div>
       </div>
