@@ -1,0 +1,34 @@
+@import "../../utils/variables";
+
+.containerPagePLot {
+
+    .containerPlot {
+        margin-left: 235px;
+        padding: 48px 32px;
+    }
+
+    .plotInfos {
+        padding-top: 70px;
+
+        .plotData {
+            margin-bottom: 31px;
+            width: 100%;
+            height: 231px;
+            background-color: $monitore-defaultBackground;
+        }
+
+        .plotHistorys {
+            display: flex;
+            gap: 32px;
+
+            .harvestHistory {
+                flex: 1;
+            }
+            
+            .plantingHistory {
+                flex: 2.3;
+            }
+        }
+
+    }
+}
