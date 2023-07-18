@@ -1,4 +1,9 @@
-export type UserDataProperties = {
+export type UserDataProps = {
+  className?: string;
+  userID: number;
+};
+
+export type User = {
   celphone: string;
   cpf_cnpj: string;
   email: string;

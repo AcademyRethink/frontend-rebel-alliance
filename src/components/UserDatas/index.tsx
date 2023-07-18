@@ -2,33 +2,36 @@ import "./styles.scss";
 import DataTableRow from "../DataTableRow";
 import { useEffect, useState } from "react";
 import { userById } from "../../services/users";
+import { User, UserDataProps } from "../../types/userDataTypes";
 
-const UserDatas = () => {
-  const [user, setUser] = useState();
-  const id = 1;
+const UserDatas = ({ userID }: UserDataProps) => {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    userById(1)
+    userById(userID)
       .then((result) => {
-        console.log(result);
         setUser(result);
       })
       .catch((error) => {
         alert(error);
       });
-  }, []);
+  }, [userID]);
 
   return (
     <div className="userDataContainer">
-      <table>
-        <DataTableRow title="Nome" text="{user.name}" />
-        <DataTableRow title="CPF/CNPJ" text="zabauba" />
-        <DataTableRow title="Data Nascimento" text="zabauba" />
-        <DataTableRow title="Número de contato" text="zabauba" />
-        <DataTableRow title="E-mail" text="zabauba" />
-        <DataTableRow title="Senha" text="zabauba" />
-        <DataTableRow title="Tipo de conta" text="zabauba" />
-      </table>
+      {user ? (
+        <table>
+          <DataTableRow title="Nome" text={user.name} />
+          <DataTableRow title="CPF/CNPJ" text={user.cpf_cnpj} />
+          <DataTableRow title="Data Nascimento" text={user.name} />
+          <DataTableRow title="Número de contato" text={user.celphone} />
+          <DataTableRow title="E-mail" text={user.email} />
+          <DataTableRow title="Senha" text={user.password} />
+          <DataTableRow title="Tipo de conta" text={user.userType} />
+        </table>
+      ) : (
+        <p>Loading</p>
+      )}
     </div>
   );
 };

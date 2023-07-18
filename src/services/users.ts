@@ -1,8 +1,7 @@
 import api from "./api";
+import { User } from "../types/userDataTypes";
 
-const userById = async (id: number) => {
-  const response = await api.get(`/users/${id}`);
+export const userById = async (userID: number): Promise<User> => {
+  const response = await api.get(`/users/${userID}`);
   return response.data;
 };
-
-export { userById };
