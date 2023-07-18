@@ -36,7 +36,7 @@ const SelectGraphic = () => {
           <Graphic
             chartData={"temp"}
             backgroundColor="#ECA900"
-            unit="°"
+            unit="°C"
             minY={0}
             maxY={40}
             increment={8}
