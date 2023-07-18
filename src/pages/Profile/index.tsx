@@ -9,7 +9,7 @@ const Profile = () => {
       <SideBar />
       <div className="dataProfileContainer">
         <Title fontSize="" fontWeight="" text="Perfil" hasIcon hasLine />
-        <UserDatas />
+        <UserDatas userID={1} />
       </div>
     </div>
   );
