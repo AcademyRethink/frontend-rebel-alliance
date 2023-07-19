@@ -17,6 +17,8 @@ const PlantingHistory = ({ className, plotID }: PlantingHistoryProps) => {
       .catch(console.log);
   }, [plotID]);
 
+  const finalYear = 5;
+
   return (
     <div className={`plantingHistoryContainer ${className}`}>
       <h1>Histórico de plantios</h1>
@@ -25,7 +27,7 @@ const PlantingHistory = ({ className, plotID }: PlantingHistoryProps) => {
           className="plantingHistoryItem"
           key={planting.plot_id}
           startDate={makeDateOutput(planting.date)}
-          finalDate={makeDateOutput(planting.date)}
+          finalDate={makeDateOutput(planting.date, finalYear)}
           saplings={String(planting.saplings)}
           harvests={String(planting.harvests)}
         />
