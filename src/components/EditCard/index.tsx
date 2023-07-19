@@ -49,9 +49,9 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     });
   }, []);
 
-  const handleInputChange = (value: string | number, key: string) => {
+  const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
-      value = Number(value);
+      value = value.replace(/\D/g, "");
     }
     setDataPlanting((prevData) => ({
       ...prevData,
@@ -126,7 +126,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         onChange={(event) => handleInputChange(event.target.value, "date")}
       />
       <TextInput
-        type="number"
         className="inputEditCard"
         label="Mudas Plantadas"
         value={dataPlanting.saplings}
