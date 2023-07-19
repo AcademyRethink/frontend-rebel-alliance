@@ -1,41 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./styles.scss";
 import monitoreLogo from "../../assets/sideBar/monitoreLogo.svg";
 import iconLogin from "../../assets/loginPage/iconLogin.svg";
 import Input from "../../components/Input";
 import CustomCheckbox from "../../components/CustomCheckbox";
 import Button from "../../components/Button";
-import loginController from "../../controllers/loginController";
-import { useEffect, useState } from "react";
-// import jwt from "jsonwebtoken";
-// import dotenv from "dotenv";
-
-// dotenv.config();
-// const mySecret = "default";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../controllers/contextController";
 
 const LoginScreen = () => {
+  const { login } = useContext(AuthContext);
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState<any>();
   const [errorMessage, setErrorMessage] = useState<any>();
   const [stayLogged, setStayLogged] = useState(false);
-
-  useEffect(() => {
-    if (token) {
-      if (token.message) {
-        if (token.message === "User not Found") {
-          setErrorMessage({ message: token.message, type: "login" });
-        } else {
-          setErrorMessage({ message: token.message, type: "password" });
-        }
-      } else {
-        console.log(stayLogged);
-        if (stayLogged) {
-          // jwt.verify(token, mySecret);
-          localStorage.setItem("token", token);
-        }
-      }
-    }
-  }, [token]);
   return (
     <div className="LoginPage">
       <div className="LoginContainer">
@@ -85,7 +64,20 @@ const LoginScreen = () => {
             className="largeButton"
             iconRight={iconLogin}
             onClick={async () => {
-              setToken(await loginController.getToken(user, password));
+              try {
+                await login(user, password, stayLogged);
+              } catch (error: any) {
+                if (error.message) {
+                  if (error.message === "User not Found") {
+                    setErrorMessage({ message: error.message, type: "login" });
+                  } else {
+                    setErrorMessage({
+                      message: error.message,
+                      type: "password",
+                    });
+                  }
+                }
+              }
             }}
           />
         </div>

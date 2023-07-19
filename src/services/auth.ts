@@ -15,4 +15,9 @@ const getUserData = async (cpforcnpj: string) => {
   return response.data;
 };
 
-export default { loginUser, getUserData };
+const validateToken = async (token: string) => {
+  const response = await api.post("users/validatetoken", { token });
+  return response.data;
+};
+
+export default { loginUser, getUserData, validateToken };

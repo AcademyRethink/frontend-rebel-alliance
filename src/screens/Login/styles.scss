@@ -14,7 +14,7 @@
   .LoginContainer {
     width: 30%;
     background-color: $monitore-defaultBackground;
-
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
 
@@ -26,6 +26,7 @@
       background-color: $monitore-black-title;
       align-items: center;
       justify-content: center;
+      border-radius: 8px 8px 0 0;
     }
 
     button {
