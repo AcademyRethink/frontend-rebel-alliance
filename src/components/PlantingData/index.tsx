@@ -1,20 +1,23 @@
 import "./styles.scss";
+import { useState, useEffect } from "react";
 import ProgressBar from "../ProgressBar";
 import Button from "../Button";
 import PlotItem from "../Item/PlotItem";
 import { StagesWithName } from "../../types/progressBarTypes";
+import { getStages } from "../../services/stages";
+import { Stages } from "../../types/stageTypes";
 
 const PlantingData = () => {
-  const stages: StagesWithName[] = [
-    { stage: "Plantio", culture: "Café", order: 1 },
-    { stage: "Pré-florada", culture: "Café", order: 2 },
-    { stage: "Florada", culture: "Café", order: 3 },
-    { stage: "Chumbinho", culture: "seila", order: 4 },
-    { stage: "Expansão", culture: "seila", order: 5 },
-    { stage: "Granação", culture: "seila", order: 6 },
-    { stage: "Colheita", culture: "seila", order: 7 },
-    { stage: "Pós-colheita", culture: "seila", order: 8 },
-  ];
+  const [stages, setStages] = useState<Stages[]>([]);
+
+  useEffect(() => {
+    getStages()
+      .then((result) => {
+        setStages(result);
+      })
+      .catch(console.log);
+  }, []);
+
   return (
     <div className="plantingDataContainer">
       <div className="infoPlot">
