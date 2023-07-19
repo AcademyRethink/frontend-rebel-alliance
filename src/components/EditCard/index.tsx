@@ -9,7 +9,7 @@ import "./styles.scss";
 
 const EditCard = ({ plantingId }: { plantingId?: string }) => {
   const [mode, setMode] = useState("add");
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>("Plantio");
   const [dataPlanting, setDataPlanting] = useState({
     date: "",
     saplings: 0,
@@ -19,6 +19,35 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     farm: "Fazenda Rebel Alliance",
   });
   const [options, setOptions] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    if (plantingId) {
+      setMode("edit");
+      api
+        .get(`/plantings/${plantingId}`)
+        .then((response) => {
+          const data = response.data[0];
+          handleDataPlanting(
+            data.date.split("T")[0],
+            data.saplings,
+            data.plot,
+            data.stage
+          );
+          setSelectedOption(data.stage);
+        })
+        .catch((error) => {
+          console.error("Erro ao obter os dados do plantio", error);
+        });
+    }
+  }, [plantingId]);
+
+  useEffect(() => {
+    getStages().then((response) => {
+      const sortedStages: Stages[] = response.sort((a, b) => a.order - b.order);
+      const stageName: string[] = sortedStages.map((stage) => stage.stage);
+      setOptions(stageName);
+    });
+  }, []);
 
   const handleInputChange = (value: string | number, key: string) => {
     if (key === "saplings") {
@@ -38,27 +67,21 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     }));
   };
 
-  useEffect(() => {
-    if (plantingId) {
-      setMode("edit");
-      api
-        .get(`/plantings/${plantingId}`)
-        .then((response) => setDataPlanting(response.data))
-        .catch((error) => {
-          console.error("Erro ao obter os dados do plantio", error);
-        });
-    }
-    [plantingId];
-  });
-
-  useEffect(() => {
-    getStages().then((response) => {
-      const sortedStages: Stages[] = response.sort((a, b) => a.order - b.order);
-      const stageName: string[] = sortedStages.map((stage) => stage.stage);
-      setOptions(stageName);
-      setSelectedOption(stageName[0]);
+  const handleDataPlanting = (
+    date: string,
+    saplings: number,
+    plot: string,
+    stage: string
+  ) => {
+    setDataPlanting({
+      date,
+      saplings,
+      plot,
+      stage,
+      user: "33333333333",
+      farm: "Fazenda Rebel Alliance",
     });
-  }, []);
+  };
 
   const handleButtonClick = () => {
     if (mode === "edit") {
@@ -82,7 +105,9 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         });
     }
   };
-
+  if (dataPlanting.plot === "") {
+    return null;
+  }
   return (
     <div className="containerEditCard">
       <TextInput
