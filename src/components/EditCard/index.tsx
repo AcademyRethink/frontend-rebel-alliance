@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
+import api from "./../../services/api";
 import { getStages } from "../../services/stages";
 import TextInput from "./../Input";
 import Dropdown from "../Dropdown";
-import "./styles.scss";
-import { Stages } from "./../../types/stagesTypes";
 import Button from "./../../components/Button";
+import { Stages } from "./../../types/stagesTypes";
+import "./styles.scss";
 
 const EditCard = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [dataPlanting, setDataPlanting] = useState({
-    talhao: "",
-    data: "",
-    mudas: "",
-    etapa: "",
+    date: "",
+    saplings: 0,
+    plot: "",
+    stage: "Plantio",
+    user: "33333333333",
+    farm: "Fazenda Rebel Alliance",
   });
   const [options, setOptions] = useState<Array<string>>([]);
 
-  const handleInputChange = (value: string, key: string) => {
+  const handleInputChange = (value: string | number, key: string) => {
+    if (key === "saplings") {
+      value = Number(value);
+    }
     setDataPlanting((prevData) => ({
       ...prevData,
       [key]: value,
@@ -27,7 +33,7 @@ const EditCard = () => {
     setSelectedOption(option);
     setDataPlanting((prevData) => ({
       ...prevData,
-      etapa: option,
+      stage: option,
     }));
   };
 
@@ -42,6 +48,14 @@ const EditCard = () => {
 
   const handleButtonClick = () => {
     console.log(dataPlanting);
+    api
+      .post("/plantings", dataPlanting)
+      .then((response) => {
+        console.log("Dados salvos", response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao salvar os dados", error);
+      });
   };
 
   return (
@@ -50,19 +64,21 @@ const EditCard = () => {
         className="inputEditCard"
         label="Nome do talhão"
         placeHolder="Talhão"
-        onChange={(event) => handleInputChange(event.target.value, "talhao")}
+        onChange={(event) => handleInputChange(event.target.value, "plot")}
       />
       <TextInput
+        type="date"
         className="inputEditCard"
         label="Data do plantio"
         placeHolder="Data"
-        onChange={(event) => handleInputChange(event.target.value, "data")}
+        onChange={(event) => handleInputChange(event.target.value, "date")}
       />
       <TextInput
+        type="number"
         className="inputEditCard"
         label="Mudas Plantadas"
         placeHolder="Mudas"
-        onChange={(event) => handleInputChange(event.target.value, "mudas")}
+        onChange={(event) => handleInputChange(event.target.value, "saplings")}
       />
       <div className="containerDropdownEditCard">
         <span>Etapa do Plantio</span>
@@ -72,11 +88,13 @@ const EditCard = () => {
           onSelect={handleSelectOption}
         />
       </div>
-      <Button
-        text="Salvar"
-        onClick={handleButtonClick}
-        className="normalButton"
-      />
+      <div className="containerButtonEditCard">
+        <Button
+          text="Salvar"
+          onClick={handleButtonClick}
+          className="normalButton"
+        />
+      </div>
     </div>
   );
 };

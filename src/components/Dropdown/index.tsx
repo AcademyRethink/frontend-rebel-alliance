@@ -1,9 +1,10 @@
 import { useState } from "react";
 import iconArrowGray from "./../../assets/iconArrowGray.svg";
 import iconArrowBrown from "./../../assets/IconArrowBrown.svg";
+import { DropdownType } from "../../types/dropdownTypes";
 import "./styles.scss";
 
-const Dropdown = ({ options, selectedOption, onSelect }: any) => {
+const Dropdown = ({ options, selectedOption, onSelect }: DropdownType) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOptionClick = (option: string) => {

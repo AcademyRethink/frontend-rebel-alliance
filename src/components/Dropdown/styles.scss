@@ -1,14 +1,17 @@
+@import "./../../utils/variables";
+
 .containerDropdown {
   position: relative;
-  background-color: #efefef;
+  background-color: $monitore-white;
   border-radius: 8px;
-  width: 200px;
+  width: 177px;
+  height: 46.118px;
 }
 
 .dropdownSelect {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 13px 16px;
   cursor: pointer;
   span {
@@ -16,12 +19,19 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: #616161;
+    &:hover {
+      color: $textInput-diseblade-color;
+    }
   }
 }
 .dropdownSelect.open {
-  border: 1px solid #a05f53;
+  width: 177px;
+  height: 46.118px;
+  border: 1px solid $monitore-brown;
   border-radius: 8px;
+  span {
+    color: $textInput-diseblade-color;
+  }
 }
 
 .containerOptions {
@@ -29,8 +39,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #efefef;
-  border: 1px solid #efefef;
+  background-color: $monitore-white;
+  border: 1px solid $monitore-white;
   border-radius: 8px;
   margin-top: 8px;
   padding: 4px 0;
@@ -46,7 +56,7 @@
 .option {
   padding: 10px;
   cursor: pointer;
-  border-top: 1px solid #818181;
+  border-top: 1px solid$monitore-item-column-title;
 }
 
 .option:first-child {
@@ -54,6 +64,6 @@
 }
 
 .option:hover {
-  background-color: #a05f53;
-  color: #ffffff;
+  background-color: $monitore-brown;
+  color: $monitore-white;
 }

@@ -1,18 +1,14 @@
 @import "./../../utils/variables";
+
 .containerEditCard {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 64px;
-  background: #cecece;
-  height: 150px; /* tirar */
-  h1 {
-    font-size: 30px;
-    width: 50px;
-  }
-  button {
-    margin-top: 25px;
-  }
+  justify-content: center;
+  gap: 32px;
+  background: $monitore-defaultBackground;
+  width: 100%;
+  padding: 24px 24px 16px 24px;
 }
 
 .inputEditCard {
@@ -21,7 +17,6 @@
   border: none;
   border-radius: 8px;
   padding-left: 11.9px;
-  border: 1px solid $textInput-defaultBorder-color;
   color: $textInput-focus-color;
   font-size: 16px;
   font-style: normal;
@@ -41,6 +36,8 @@
 }
 
 .containerDropdownEditCard {
+  width: 177px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   gap: 6.88px;
@@ -50,11 +47,23 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: #959595;
+    color: $textInput-placeholder-color;
   }
 }
 
 .dropdownCustomize {
   border: none;
   outline: none;
+}
+
+.containerButtonEditCard {
+  display: flex;
+  align-items: flex-end;
+  width: 177px;
+  height: 70px;
+  margin-left: 111px;
+  button {
+    width: 177px;
+    height: 46.118px;
+  }
 }
