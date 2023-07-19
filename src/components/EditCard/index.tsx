@@ -105,7 +105,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         });
     }
   };
-  if (dataPlanting.plot === "") {
+  if (dataPlanting.user === "") {
     return null;
   }
   return (

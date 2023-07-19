@@ -8,7 +8,7 @@ import EditCard from "./components/EditCard";
 function App() {
   return (
     <>
-      <EditCard plantingId={"32"} />
+      <EditCard />
       <BrowserRouter>
         <Routes>
           <Route path="/" />
