@@ -7,7 +7,8 @@ import Button from "./../../components/Button";
 import { Stages } from "./../../types/stagesTypes";
 import "./styles.scss";
 
-const EditCard = () => {
+const EditCard = ({ plantingId }: { plantingId?: string }) => {
+  const [mode, setMode] = useState("add");
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [dataPlanting, setDataPlanting] = useState({
     date: "",
@@ -38,6 +39,19 @@ const EditCard = () => {
   };
 
   useEffect(() => {
+    if (plantingId) {
+      setMode("edit");
+      api
+        .get(`/plantings/${plantingId}`)
+        .then((response) => setDataPlanting(response.data))
+        .catch((error) => {
+          console.error("Erro ao obter os dados do plantio", error);
+        });
+    }
+    [plantingId];
+  });
+
+  useEffect(() => {
     getStages().then((response) => {
       const sortedStages: Stages[] = response.sort((a, b) => a.order - b.order);
       const stageName: string[] = sortedStages.map((stage) => stage.stage);
@@ -47,15 +61,26 @@ const EditCard = () => {
   }, []);
 
   const handleButtonClick = () => {
-    console.log(dataPlanting);
-    api
-      .post("/plantings", dataPlanting)
-      .then((response) => {
-        console.log("Dados salvos", response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao salvar os dados", error);
-      });
+    if (mode === "edit") {
+      api
+        .put(`plantings/${plantingId}`, dataPlanting)
+        .then((response) => {
+          console.log("Dados salvos", response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao salvar os dados", error);
+        });
+    }
+    if (mode === "add") {
+      api
+        .post("/plantings", dataPlanting)
+        .then((response) => {
+          console.log("Dados salvos", response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao salvar os dados", error);
+        });
+    }
   };
 
   return (
@@ -63,6 +88,7 @@ const EditCard = () => {
       <TextInput
         className="inputEditCard"
         label="Nome do talhão"
+        value={dataPlanting.plot}
         placeHolder="Talhão"
         onChange={(event) => handleInputChange(event.target.value, "plot")}
       />
@@ -70,6 +96,7 @@ const EditCard = () => {
         type="date"
         className="inputEditCard"
         label="Data do plantio"
+        value={dataPlanting.date}
         placeHolder="Data"
         onChange={(event) => handleInputChange(event.target.value, "date")}
       />
@@ -77,6 +104,7 @@ const EditCard = () => {
         type="number"
         className="inputEditCard"
         label="Mudas Plantadas"
+        value={dataPlanting.saplings}
         placeHolder="Mudas"
         onChange={(event) => handleInputChange(event.target.value, "saplings")}
       />
