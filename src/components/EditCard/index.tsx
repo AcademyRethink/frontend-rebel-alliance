@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getStages } from "../../services/stages";
 import TextInput from "./../Input";
 import Dropdown from "../Dropdown";
 import "./styles.scss";
 import { Stages } from "./../../types/stagesTypes";
+import Button from "./../../components/Button";
 
 const EditCard = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
@@ -71,7 +72,11 @@ const EditCard = () => {
           onSelect={handleSelectOption}
         />
       </div>
-      <button onClick={handleButtonClick}>Teste</button>
+      <Button
+        text="Salvar"
+        onClick={handleButtonClick}
+        className="normalButton"
+      />
     </div>
   );
 };

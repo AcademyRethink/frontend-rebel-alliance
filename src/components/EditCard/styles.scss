@@ -2,12 +2,16 @@
 .containerEditCard {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 64px;
   background: #cecece;
   height: 150px; /* tirar */
   h1 {
     font-size: 30px;
     width: 50px;
+  }
+  button {
+    margin-top: 25px;
   }
 }
 
