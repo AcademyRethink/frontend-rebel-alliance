@@ -3,33 +3,44 @@ import { useState, useEffect } from "react";
 import ProgressBar from "../ProgressBar";
 import Button from "../Button";
 import PlotItem from "../Item/PlotItem";
-import { StagesWithName } from "../../types/progressBarTypes";
 import { getStages } from "../../services/stages";
 import { Stages } from "../../types/stageTypes";
+import { PlantingDataProps } from "../../types/farmTypes";
+import { makeDateOutput } from "../../utils/itemsFunctions";
 
-const PlantingData = () => {
-  const [stages, setStages] = useState<Stages[]>([]);
+const PlantingData = ({ plotData, cultureID }: PlantingDataProps) => {
+  const [stages, setStages] = useState<Stages[]>();
 
   useEffect(() => {
-    getStages()
+    getStages(cultureID)
       .then((result) => {
         setStages(result);
       })
-      .catch(console.log);
-  }, []);
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   return (
     <div className="plantingDataContainer">
       <div className="infoPlot">
-        <PlotItem plotName="" date="" saplings="" stage="" harvests="" />
+        <PlotItem
+          plotName={plotData.plot_name}
+          date={makeDateOutput(plotData.planting_date)}
+          saplings={String(plotData.saplings)}
+          stage={plotData.stage}
+          harvests={plotData.harvests}
+        />
         <Button className="filterButton" text="Editar" iconRight="" />
       </div>
       <div className="infoStages">
-        <ProgressBar
-          className="ProgressBarDefault"
-          stages={stages}
-          actualStageOrder={3}
-        />
+        {stages && (
+          <ProgressBar
+            className="ProgressBarDefault"
+            stages={stages}
+            actualStageOrder={plotData.stage_order}
+          />
+        )}
         <Button className="normalButton" text="Mais detalhes" />
       </div>
     </div>
