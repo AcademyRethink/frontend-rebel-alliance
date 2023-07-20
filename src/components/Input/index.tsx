@@ -3,25 +3,27 @@ import { TextInputProps } from "../../types/InputTypes";
 
 const TextInput = ({
   className,
+  type = "text",
   label,
   placeHolder,
   value,
   errorMessage,
   onChange,
 }: TextInputProps) => {
+  const id = Math.random();
   return (
     <div className="TextInputContainer">
-      <label htmlFor={className}>{label}</label>
+      <label htmlFor={`${id}`}>{label}</label>
       <input
-        type="text"
+        type={type}
         className={className}
-        id={className}
+        id={`${id}`}
         placeholder={placeHolder}
         value={value}
         onChange={onChange}
         disabled={className === "Disable" ? true : false}
       />
-      {className === "Error" && errorMessage && <p>{errorMessage}</p>}
+      {className === "TextInputError" && errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };
