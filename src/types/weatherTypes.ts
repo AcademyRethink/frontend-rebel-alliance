@@ -1,3 +1,12 @@
+export type SummaryTimeType = { farmID: number; resume: boolean };
+
+export type DateObject = {
+  dayOfWeekText: string;
+  day: number;
+  monthText: string;
+  year: number;
+};
+
 type DayData = {
   dt: number;
   sunrise: number;
@@ -34,7 +43,7 @@ type DayData = {
   rain?: number;
 };
 
-type HourData = {
+export type HourData = {
   dt: number;
   main: {
     temp: number;

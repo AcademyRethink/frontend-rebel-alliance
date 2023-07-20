@@ -1,6 +1,14 @@
 import api from "./api";
-import { HourlyWeather } from "./../types/weatherTypes";
+import { DailyWeather, HourlyWeather } from "./../types/weatherTypes";
 import { Farm } from "../types/farmTypes";
+
+export async function getDailyWeatherByCity(
+  city: string | undefined,
+  days = 7
+): Promise<DailyWeather> {
+  const response = await api.get(`weather/daily?city=${city}&days=${days}`);
+  return response.data;
+}
 
 export async function getWeatherByCity(
   city: string | undefined

@@ -1,32 +1,18 @@
-const DayController = () => {
-  const dayOfWeek: string[] = [
-    "Domingo",
-    "Segunda-feira",
-    "Terça-feira",
-    "Quarta-feira",
-    "Quinta-feira",
-    "Sexta-feira",
-    "Sábado",
-  ];
-  const month: string[] = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ];
-  const today: Date = new Date();
-  const dayOfWeekText: string = dayOfWeek[today.getDay()];
-  const day: number = today.getDate();
-  const monthText: string = month[today.getMonth()];
-  const year: number = today.getFullYear();
+import { getDateObject } from "../../utils/weatherFunctions";
+
+const DayController = ({ resume = false }) => {
+  const { dayOfWeekText, day, monthText, year } = getDateObject();
+
+  if (resume) {
+    const date = new Date();
+    const formatDate = date.toLocaleString("pt-BR", { timeZone: "UTC" });
+
+    return (
+      <>
+        {dayOfWeekText}, {formatDate.slice(0, 10)}
+      </>
+    );
+  }
 
   return (
     <>
