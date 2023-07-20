@@ -25,6 +25,9 @@
     -moz-appearance: textfield;
     appearance: textfield;
   }
+  input[type="date"] {
+    padding: 12px;
+  }
 }
 
 .TextInputDefault {

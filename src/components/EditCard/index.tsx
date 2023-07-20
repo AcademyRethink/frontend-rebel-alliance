@@ -52,11 +52,16 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
   const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
       value = value.replace(/\D/g, "");
+      setDataPlanting((prevData) => ({
+        ...prevData,
+        [key]: Number(value),
+      }));
+    } else {
+      setDataPlanting((prevData) => ({
+        ...prevData,
+        [key]: value,
+      }));
     }
-    setDataPlanting((prevData) => ({
-      ...prevData,
-      [key]: value,
-    }));
   };
 
   const handleSelectOption = (option: string) => {
@@ -95,6 +100,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         });
     }
     if (mode === "add") {
+      console.log(dataPlanting);
       api
         .post("/plantings", dataPlanting)
         .then((response) => {
