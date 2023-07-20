@@ -1,0 +1,17 @@
+@import "./../../utils/variables";
+
+.plantingDataContainer {
+  width: 100%;
+  background-color: $monitore-defaultBackground;
+
+  .infoPlot {
+    display: flex;
+    padding: 24px;
+  }
+
+  .infoStages {
+    display: flex;
+    flex-direction: row;
+    gap: 96px;
+  }
+}
