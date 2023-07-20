@@ -1,4 +1,4 @@
-import { buildProgressBar } from "../../controller/progressBarController";
+import { buildProgressBar } from "../../controllers/progressBarController";
 import { ProgressBarComponentProps } from "../../types/progressBarTypes";
 import "./styles.scss";
 
