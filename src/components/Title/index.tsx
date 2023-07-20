@@ -14,7 +14,7 @@ const Title = ({
     <div className="containerTitle">
       <div className="containerButtonAndTitle">
         {hasIcon && (
-          <NavLink to="/home">
+          <NavLink to="/">
             <div className="containerArrow">
               <img src={iconArrow} alt="icone para voltar" />
             </div>

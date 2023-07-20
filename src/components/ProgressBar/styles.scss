@@ -3,21 +3,41 @@
 .ProgressBarDefault {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .ProgressbarBox {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  min-width: 900px;
+  padding: 0 1.5% 8px;
+}
+
+.LabelBox {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1.5% 16px 1.5%;
+
+  label {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    color: $monitore-item-column-title;
+  }
 }
 .StagesNamesBox {
   display: flex;
   flex-direction: row;
-  gap: 18px;
+  justify-content: space-between;
   word-break: break-word;
+  width: 100%;
+  min-width: 900px;
   p {
-    width: 90px;
+    width: 5.3%;
+    min-width: 70px;
     text-align: center;
   }
 }
