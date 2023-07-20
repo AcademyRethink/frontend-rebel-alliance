@@ -6,8 +6,12 @@ import iconPerfil from "./../../assets/sideBar/iconPerfil.svg";
 import iconExit from "./../../assets/sideBar/iconExit.svg";
 import Button from "../Button";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../controllers/contextController";
 
 const SideBar = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { logout } = useContext(AuthContext);
   return (
     <div className="sideBar">
       <div className="containerLogo">
@@ -60,8 +64,8 @@ const SideBar = () => {
             text="Sair"
             iconLeft={iconExit}
             onClick={() => {
-              localStorage.removeItem("token");
-              window.location.href = "/login";
+              logout();
+              window.location.href = "/";
             }}
           />
         </div>
