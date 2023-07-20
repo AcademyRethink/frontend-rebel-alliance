@@ -20,7 +20,7 @@ const SideBar = () => {
       <nav className="containerButtons">
         <div className="containerLinks">
           <NavLink
-            to="/home"
+            to="/"
             className={({ isActive }) =>
               isActive ? "linkActive" : "linkNoActive"
             }
