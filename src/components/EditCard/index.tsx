@@ -83,15 +83,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     });
   };
 
-  function handleDate() {
-    const today = new Date();
-    const day = today.getDate().toString().padStart(2, "0");
-    const month = (today.getMonth() + 1).toString().padStart(2, "0");
-    const year = today.getFullYear();
-
-    return `${year}-${month}-${day}`;
-  }
-
   const handleButtonClick = () => {
     if (mode === "edit") {
       api
@@ -102,24 +93,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
         });
-      if (dataPlanting.stage === "Colheita") {
-        const dataHarvest = {
-          date: handleDate(),
-          bags: dataPlanting.saplings,
-          plot_name: dataPlanting.plot,
-          user_name: "Jose",
-          farm_name: dataPlanting.farm,
-          planting_id: plantingId,
-        };
-        console.log(dataHarvest);
-
-        api
-          .post("harvests", dataHarvest)
-          .then((response) => console.log("Dados salvos", response.data))
-          .catch((error) => {
-            console.error("Erro ao salvar os dados", error);
-          });
-      }
     }
     if (mode === "add") {
       api
