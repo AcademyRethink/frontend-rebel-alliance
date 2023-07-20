@@ -35,7 +35,6 @@ export const buildProgressBar = (
         />
       );
     } else if (actualStageOrder == i) {
-      console.log("if = i", actualStageOrder);
       progressBar.push(
         <StageMarker
           className={
@@ -52,8 +51,6 @@ export const buildProgressBar = (
           <MidBar className="MidBarInactive" key={stagesSort[i - 1].id} />
         );
     } else {
-      console.log(stagesSort[i - 1]);
-
       progressBar.push(
         <StageMarker
           className="StageMarkerMidActive"
