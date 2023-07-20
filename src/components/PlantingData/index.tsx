@@ -7,6 +7,7 @@ import { getStages } from "../../services/stages";
 import { Stages } from "../../types/stageTypes";
 import { PlantingDataProps } from "../../types/farmTypes";
 import { makeDateOutput } from "../../utils/itemsFunctions";
+import editIcon from "../../assets/button/editIcon.svg";
 
 const PlantingData = ({ plotData, cultureID }: PlantingDataProps) => {
   const [stages, setStages] = useState<Stages[]>();
@@ -31,7 +32,7 @@ const PlantingData = ({ plotData, cultureID }: PlantingDataProps) => {
           stage={plotData.stage}
           harvests={plotData.harvests}
         />
-        <Button className="filterButton" text="Editar" iconRight="" />
+        <Button className="filterButton" text="Editar" iconRight={editIcon} />
       </div>
       <div className="infoStages">
         {stages && (
