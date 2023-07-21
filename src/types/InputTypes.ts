@@ -6,4 +6,5 @@ export type TextInputProps = {
   value?: string | number | readonly string[] | undefined;
   errorMessage?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  required?: boolean;
 };

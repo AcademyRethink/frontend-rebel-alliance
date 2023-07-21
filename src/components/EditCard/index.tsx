@@ -6,19 +6,21 @@ import Dropdown from "../Dropdown";
 import Button from "./../../components/Button";
 import { Stages } from "./../../types/stagesTypes";
 import "./styles.scss";
+import { PlantingType } from "../../types/plantinTypes";
 
 const EditCard = ({ plantingId }: { plantingId?: string }) => {
   const [mode, setMode] = useState("add");
   const [selectedOption, setSelectedOption] = useState<string>("Plantio");
-  const [dataPlanting, setDataPlanting] = useState({
+  const [dataPlanting, setDataPlanting] = useState<PlantingType>({
     date: "",
-    saplings: 0,
+    saplings: undefined,
     plot: "",
     stage: "Plantio",
     user: "33333333333",
     farm: "Fazenda Rebel Alliance",
   });
   const [options, setOptions] = useState<Array<string>>([]);
+  const [savedData, setSavedData] = useState(null);
 
   useEffect(() => {
     if (plantingId) {
@@ -88,12 +90,15 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     });
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event: React.FormEvent) => {
+    event.preventDefault();
+
     if (mode === "edit") {
       api
         .put(`plantings/${plantingId}`, dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
+          setSavedData(response.data);
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
@@ -105,55 +110,60 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .post("/plantings", dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
+          setSavedData(response.data);
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
         });
     }
   };
-  if (dataPlanting.user === "") {
-    return null;
+
+  if (savedData) {
+    return <Button text="Novo componente" />;
   }
   return (
-    <div className="containerEditCard">
-      <TextInput
-        className="inputEditCard"
-        label="Nome do talhão"
-        value={dataPlanting.plot}
-        placeHolder="Talhão"
-        onChange={(event) => handleInputChange(event.target.value, "plot")}
-      />
-      <TextInput
-        type="date"
-        className="inputEditCard"
-        label="Data do plantio"
-        value={dataPlanting.date}
-        placeHolder="Data"
-        onChange={(event) => handleInputChange(event.target.value, "date")}
-      />
-      <TextInput
-        className="inputEditCard"
-        label="Mudas Plantadas"
-        value={dataPlanting.saplings}
-        placeHolder="Mudas"
-        onChange={(event) => handleInputChange(event.target.value, "saplings")}
-      />
-      <div className="containerDropdownEditCard">
-        <span>Etapa do Plantio</span>
-        <Dropdown
-          options={options}
-          selectedOption={selectedOption}
-          onSelect={handleSelectOption}
+    <form onSubmit={handleButtonClick}>
+      <div className="containerEditCard">
+        <TextInput
+          className="inputEditCard"
+          label="Nome do talhão"
+          value={dataPlanting.plot}
+          placeHolder="Talhão"
+          onChange={(event) => handleInputChange(event.target.value, "plot")}
+          required={true}
         />
-      </div>
-      <div className="containerButtonEditCard">
-        <Button
-          text="Salvar"
-          onClick={handleButtonClick}
-          className="normalButton"
+        <TextInput
+          type="date"
+          className="inputEditCard"
+          label="Data do plantio"
+          value={dataPlanting.date}
+          placeHolder="Data"
+          onChange={(event) => handleInputChange(event.target.value, "date")}
+          required={true}
         />
+        <TextInput
+          className="inputEditCard"
+          label="Mudas Plantadas"
+          value={dataPlanting.saplings}
+          placeHolder="Mudas"
+          onChange={(event) =>
+            handleInputChange(event.target.value, "saplings")
+          }
+          required={true}
+        />
+        <div className="containerDropdownEditCard">
+          <span>Etapa do Plantio</span>
+          <Dropdown
+            options={options}
+            selectedOption={selectedOption}
+            onSelect={handleSelectOption}
+          />
+        </div>
+        <div className="containerButtonEditCard">
+          <Button text="Salvar" className="normalButton" type="submit" />
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
