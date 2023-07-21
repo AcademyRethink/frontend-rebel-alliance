@@ -19,14 +19,16 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, [dataPlot]);
   return (
     <div className="pageClimateContainer">
       <SideBar />
       <div className="homeDataContainer">
-        {dataPlot?.map((plot) => (
-          <PlantingData plotData={plot} cultureID={1} />
-        ))}
+        {dataPlot
+          ?.sort((a, b) => a.plot_id - b.plot_id)
+          .map((plot) => (
+            <PlantingData plotData={plot} cultureID={1} key={plot.plot_id} />
+          ))}
       </div>
     </div>
   );

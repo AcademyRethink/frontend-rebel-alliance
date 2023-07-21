@@ -10,7 +10,13 @@ import { Stages } from "./../../types/stageTypes";
 import "./styles.scss";
 import { PlantingType } from "../../types/plantinTypes";
 
-const EditCard = ({ plantingId }: { plantingId?: string }) => {
+const EditCard = ({
+  plantingId,
+  handleMode,
+}: {
+  plantingId?: number;
+  handleMode: () => void;
+}) => {
   const { userData } = useContext(AuthContext);
   const [mode, setMode] = useState("add");
   const [selectedOption, setSelectedOption] = useState<string>("Plantio");
@@ -43,7 +49,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
           console.error("Erro ao obter os dados do plantio", error);
         });
     }
-  }, [plantingId]);
+  }, []);
 
   useEffect(() => {
     getStages(1).then((response) => {
@@ -57,7 +63,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         farm: response,
       }));
     });
-  }, [userData.info.farm_id]);
+  }, []);
 
   const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
@@ -106,6 +112,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .put(`plantings/${plantingId}`, dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
+          handleMode();
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
@@ -117,6 +124,7 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .post("/plantings", dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
+          handleMode();
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
