@@ -1,32 +1,49 @@
 import "./styles.scss";
+import { useState, useEffect } from "react";
 import ProgressBar from "../ProgressBar";
 import Button from "../Button";
 import PlotItem from "../Item/PlotItem";
-import { StagesWithName } from "../../types/progressBarTypes";
+import { getStages } from "../../services/stages";
+import { Stages } from "../../types/stageTypes";
+import { PlantingDataProps } from "../../types/farmTypes";
+import { makeDateOutput } from "../../utils/itemsFunctions";
+import editIcon from "../../assets/button/editIcon.svg";
 
-const PlantingData = () => {
-  const stages: StagesWithName[] = [
-    { stage: "Plantio", culture: "Café", order: 1 },
-    { stage: "Pré-florada", culture: "Café", order: 2 },
-    { stage: "Florada", culture: "Café", order: 3 },
-    { stage: "Chumbinho", culture: "seila", order: 4 },
-    { stage: "Expansão", culture: "seila", order: 5 },
-    { stage: "Granação", culture: "seila", order: 6 },
-    { stage: "Colheita", culture: "seila", order: 7 },
-    { stage: "Pós-colheita", culture: "seila", order: 8 },
-  ];
+const PlantingData = ({ plotData, cultureID }: PlantingDataProps) => {
+  const [stages, setStages] = useState<Stages[]>();
+
+  useEffect(() => {
+    getStages(cultureID)
+      .then((result) => {
+        setStages(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
   return (
     <div className="plantingDataContainer">
       <div className="infoPlot">
-        <PlotItem plotName="" date="" saplings="" stage="" harvests="" />
-        <Button className="filterButton" text="Editar" iconRight="" />
+        <PlotItem
+          plotName={plotData.plot_name}
+          date={makeDateOutput(plotData.planting_date)}
+          saplings={String(plotData.saplings)}
+          stage={plotData.stage}
+          harvests={plotData.harvests}
+        />
+        <Button className="filterButton" text="Editar" iconRight={editIcon} />
       </div>
       <div className="infoStages">
-        <ProgressBar
-          className="ProgressBarDefault"
-          stages={stages}
-          actualStageOrder={3}
-        />
+        {stages && (
+          <ProgressBar
+            className="ProgressBarDefault"
+            label="Progresso do plantio"
+            stages={stages}
+            actualStageOrder={plotData.stage_order}
+          />
+        )}
+
         <Button className="normalButton" text="Mais detalhes" />
       </div>
     </div>
