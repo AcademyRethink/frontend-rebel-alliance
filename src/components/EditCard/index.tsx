@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../controllers/contextController";
 import api from "./../../services/api";
 import { getStages } from "../../services/stages";
+import { getFarmName } from "../../services/farm";
 import TextInput from "./../Input";
 import Dropdown from "../Dropdown";
 import Button from "./../../components/Button";
-import { Stages } from "./../../types/stagesTypes";
+import { Stages } from "./../../types/stageTypes";
 import "./styles.scss";
 import { PlantingType } from "../../types/plantinTypes";
 
 const EditCard = ({ plantingId }: { plantingId?: string }) => {
+  const { userData } = useContext(AuthContext);
   const [mode, setMode] = useState("add");
   const [selectedOption, setSelectedOption] = useState<string>("Plantio");
   const [dataPlanting, setDataPlanting] = useState<PlantingType>({
@@ -16,11 +19,10 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     saplings: undefined,
     plot: "",
     stage: "Plantio",
-    user: "33333333333",
-    farm: "Fazenda Rebel Alliance",
+    user: userData.info.cpf_cnpj,
+    farm: "",
   });
   const [options, setOptions] = useState<Array<string>>([]);
-  const [savedData, setSavedData] = useState(null);
 
   useEffect(() => {
     if (plantingId) {
@@ -44,12 +46,18 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
   }, [plantingId]);
 
   useEffect(() => {
-    getStages().then((response) => {
+    getStages(1).then((response) => {
       const sortedStages: Stages[] = response.sort((a, b) => a.order - b.order);
       const stageName: string[] = sortedStages.map((stage) => stage.stage);
       setOptions(stageName);
     });
-  }, []);
+    getFarmName(userData.info.farm_id).then((response) => {
+      setDataPlanting((prevData) => ({
+        ...prevData,
+        farm: response,
+      }));
+    });
+  }, [userData.info.farm_id]);
 
   const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
@@ -98,7 +106,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .put(`plantings/${plantingId}`, dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
-          setSavedData(response.data);
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
@@ -110,7 +117,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
         .post("/plantings", dataPlanting)
         .then((response) => {
           console.log("Dados salvos", response.data);
-          setSavedData(response.data);
         })
         .catch((error) => {
           console.error("Erro ao salvar os dados", error);
@@ -118,9 +124,6 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
     }
   };
 
-  if (savedData) {
-    return <Button text="Novo componente" />;
-  }
   return (
     <form onSubmit={handleButtonClick}>
       <div className="containerEditCard">

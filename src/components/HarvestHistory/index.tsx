@@ -1,7 +1,7 @@
 import "./styles.scss";
 import { useState, useEffect } from "react";
 import { HarvestHistoryProps } from "../../types/harvestsTypes";
-import { getHarvestByPlantingID } from "../../service/harvests";
+import { getHarvestByPlantingID } from "../../services/harvests";
 import { Harvest } from "../../types/harvestsTypes";
 import HarvestItem from "../Item/HarvestItem";
 import { makeDateOutput } from "../../utils/itemsFunctions";

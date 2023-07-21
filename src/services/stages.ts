@@ -1,4 +1,3 @@
-
 import { Stages } from "../types/stageTypes";
 import api from "./api";
 
