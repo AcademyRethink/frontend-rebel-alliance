@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <div>
-      <SideBar />
       <PlantingData plotData={mock} cultureID={1} />
     </div>
   );

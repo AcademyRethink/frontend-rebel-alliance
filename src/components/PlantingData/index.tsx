@@ -38,10 +38,12 @@ const PlantingData = ({ plotData, cultureID }: PlantingDataProps) => {
         {stages && (
           <ProgressBar
             className="ProgressBarDefault"
+            label="Progresso do plantio"
             stages={stages}
             actualStageOrder={plotData.stage_order}
           />
         )}
+
         <Button className="normalButton" text="Mais detalhes" />
       </div>
     </div>

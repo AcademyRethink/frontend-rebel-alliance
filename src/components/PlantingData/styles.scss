@@ -9,17 +9,21 @@
   .infoPlot {
     display: flex;
     border-bottom: 2px solid $monitore-line;
+    justify-content: space-between;
+    gap: 1px;
+  }
+
+  .filterButton {
+    width: 134px;
+    gap: 10px;
   }
 
   .infoStages {
     display: flex;
     flex-direction: row;
     padding-top: 16px;
-    gap: 96px;
-  }
-
-  .filterButton {
-    width: 134px;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8.78%;
   }
 }
