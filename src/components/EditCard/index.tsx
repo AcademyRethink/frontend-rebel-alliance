@@ -124,35 +124,42 @@ const EditCard = ({ plantingId }: { plantingId?: string }) => {
   return (
     <form onSubmit={handleButtonClick}>
       <div className="containerEditCard">
-        <TextInput
-          className="inputEditCard"
-          label="Nome do talhão"
-          value={dataPlanting.plot}
-          placeHolder="Talhão"
-          onChange={(event) => handleInputChange(event.target.value, "plot")}
-          required={true}
-        />
-        <TextInput
-          type="date"
-          className="inputEditCard"
-          label="Data do plantio"
-          value={dataPlanting.date}
-          placeHolder="Data"
-          onChange={(event) => handleInputChange(event.target.value, "date")}
-          required={true}
-        />
-        <TextInput
-          className="inputEditCard"
-          label="Mudas Plantadas"
-          value={dataPlanting.saplings}
-          placeHolder="Mudas"
-          onChange={(event) =>
-            handleInputChange(event.target.value, "saplings")
-          }
-          required={true}
-        />
+        <div className="containerInputEditCard">
+          <TextInput
+            className="inputEditCard"
+            label="Nome do talhão"
+            value={dataPlanting.plot}
+            placeHolder="Talhão"
+            onChange={(event) => handleInputChange(event.target.value, "plot")}
+            required={true}
+          />
+        </div>
+        <div className="containerInputEditCard">
+          <TextInput
+            type="date"
+            className="inputEditCard"
+            label="Data do plantio"
+            value={dataPlanting.date}
+            placeHolder="Data"
+            onChange={(event) => handleInputChange(event.target.value, "date")}
+            required={true}
+          />
+        </div>
+        <div className="containerInputEditCard">
+          <TextInput
+            className="inputEditCard"
+            label="Mudas Plantadas"
+            value={dataPlanting.saplings}
+            placeHolder="Mudas"
+            onChange={(event) =>
+              handleInputChange(event.target.value, "saplings")
+            }
+            required={true}
+          />
+        </div>
+
         <div className="containerDropdownEditCard">
-          <span>Etapa do Plantio</span>
+          <p>Etapa do Plantio</p>
           <Dropdown
             options={options}
             selectedOption={selectedOption}
