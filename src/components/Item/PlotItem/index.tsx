@@ -11,7 +11,7 @@ const PlotItem = ({
   harvests,
 }: PlotItemProps) => {
   return (
-    <div className={`itemContainer ${className}`}>
+    <div className={`itemContainerWithoutLine ${className}`}>
       <Column title="Talhão" text={plotName} />
       <Column title="Data" text={date} />
       <Column title="Mudas" text={saplings} />

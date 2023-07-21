@@ -1,6 +1,7 @@
 import MidBar from "../components/ProgressBar/Components/MidBar";
 import StageMarker from "../components/ProgressBar/Components/StageMarker";
 import { StagesWithName } from "../types/progressBarTypes";
+import { v4 as uuidv4 } from "uuid";
 
 export const buildProgressBar = (
   stages: StagesWithName[],
@@ -25,17 +26,16 @@ export const buildProgressBar = (
               : "StageMarkerInitalActive"
           }
           orderOfStage={stagesSort[0].order}
-          key={stagesSort[0].id}
+          key={uuidv4()}
         />
       );
       progressBar.push(
         <MidBar
           className={actualStageOrder == i ? "MidBarInactive" : "MidBarActive"}
-          key={stagesSort[0].id}
+          key={uuidv4()}
         />
       );
     } else if (actualStageOrder == i) {
-      console.log("if = i", actualStageOrder);
       progressBar.push(
         <StageMarker
           className={
@@ -44,26 +44,20 @@ export const buildProgressBar = (
               : "StageMarkerEndActive"
           }
           orderOfStage={stagesSort[i - 1].order}
-          key={stagesSort[i - 1].id}
+          key={uuidv4()}
         />
       );
       if (i !== totalStages)
-        progressBar.push(
-          <MidBar className="MidBarInactive" key={stagesSort[i - 1].id} />
-        );
+        progressBar.push(<MidBar className="MidBarInactive" key={uuidv4()} />);
     } else {
-      console.log(stagesSort[i - 1]);
-
       progressBar.push(
         <StageMarker
           className="StageMarkerMidActive"
           orderOfStage={stagesSort[i - 1].order}
-          key={stagesSort[i - 1].id}
+          key={uuidv4()}
         />
       );
-      progressBar.push(
-        <MidBar className="MidBarActive" key={stagesSort[i - 1].id} />
-      );
+      progressBar.push(<MidBar className="MidBarActive" key={uuidv4()} />);
     }
   }
 
@@ -73,18 +67,16 @@ export const buildProgressBar = (
         <StageMarker
           className="StageMarkerInitalInactive"
           orderOfStage={stagesSort[0].order}
-          key={stagesSort[0].id}
+          key={uuidv4()}
         />
       );
-      progressBar.push(
-        <MidBar className="MidBarInactive" key={stagesSort[i - 1].id} />
-      );
+      progressBar.push(<MidBar className="MidBarInactive" key={uuidv4()} />);
     } else if (i == totalStages) {
       progressBar.push(
         <StageMarker
           className="StageMarkerEndInactive"
           orderOfStage={stagesSort[i - 1].order}
-          key={stagesSort[i - 1].id}
+          key={uuidv4()}
         />
       );
     } else {
@@ -92,13 +84,11 @@ export const buildProgressBar = (
         <StageMarker
           className="StageMarkerMidInactive"
           orderOfStage={stagesSort[i - 1].order}
-          key={stagesSort[i - 1].id}
+          key={uuidv4()}
         />
       );
 
-      progressBar.push(
-        <MidBar className="MidBarInactive" key={stagesSort[i - 1].id} />
-      );
+      progressBar.push(<MidBar className="MidBarInactive" key={uuidv4()} />);
     }
   }
 

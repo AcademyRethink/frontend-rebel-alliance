@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HourlyWeather } from "../../types/weatherTypes";
+import { HourlyWeather, SummaryTimeType } from "../../types/weatherTypes";
 import { Farm } from "../../types/farmTypes";
 import separator from "./../../assets/separator.svg";
 import DayController from "./dayController";
@@ -21,18 +21,18 @@ const allClimate = {
   Extreme: storm,
 };
 
-export const DataWeather = ({ resume }: { resume: boolean }) => {
+export const DataWeather = ({ farmID, resume }: SummaryTimeType) => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
     {}
   );
 
   useEffect(() => {
-    fetchWeatherHourlyData(26)
+    fetchWeatherHourlyData(farmID)
       .then((response) =>
         setData({ farm: response?.farm, weather: response?.weather })
       )
       .catch();
-  }, []);
+  }, [farmID]);
   const { weather, farm } = data;
 
   if (!weather || !farm) {
@@ -98,40 +98,42 @@ export const DataWeather = ({ resume }: { resume: boolean }) => {
   }
   return (
     <>
-      <div className="containerWeatherPageClimate">
-        <div className="containerInformationTime">
-          <span>
-            <HourController />
-          </span>
-          <div className="containerDateAndLocalPageClimate">
-            <time>
-              <DayController />
-            </time>
-            <address>
-              <img src={iconLocation} alt="Icone de localização" />
-              {farm?.address.city}, {farm?.address.state}, Brazil
-            </address>
+      <div className="background">
+        <div className="containerWeatherPageClimate">
+          <div className="containerInformationTime">
+            <span>
+              <HourController />
+            </span>
+            <div className="containerDateAndLocalPageClimate">
+              <time>
+                <DayController resume={true} />
+              </time>
+              <address>
+                <img src={iconLocation} alt="Icone de localização" />
+                {farm?.address.city}, {farm?.address.state}, Brazil
+              </address>
+            </div>
           </div>
-        </div>
-        <div className="temperaturePageClimate">
-          <div>
-            <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
-            <sup>°C</sup>
-            <p>{firstWeatherItem?.weather[0]?.description}</p>
+          <div className="temperaturePageClimate">
+            <div>
+              <span>{firstWeatherItem?.main.temp.toFixed(0)}</span>
+              <sup>°C</sup>
+              <p>{firstWeatherItem?.weather[0]?.description}</p>
+            </div>
+            <img
+              src={
+                climate === "algumas" ||
+                climate === "nublado" ||
+                climate === "nuvens" ||
+                climate === "Rain" ||
+                climate === "Clear" ||
+                climate === "Extreme"
+                  ? allClimate[climate]
+                  : allClimate["Clear"]
+              }
+              alt="icone de clima"
+            />
           </div>
-          <img
-            src={
-              climate === "algumas" ||
-              climate === "nublado" ||
-              climate === "nuvens" ||
-              climate === "Rain" ||
-              climate === "Clear" ||
-              climate === "Extreme"
-                ? allClimate[climate]
-                : allClimate["Clear"]
-            }
-            alt="icone de clima"
-          />
         </div>
       </div>
     </>

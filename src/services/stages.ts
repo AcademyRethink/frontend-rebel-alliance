@@ -1,7 +1,8 @@
-import { Stages } from "./../types/stagesTypes";
+
+import { Stages } from "../types/stageTypes";
 import api from "./api";
 
-export async function getStages(): Promise<Array<Stages>> {
-  const response = await api.get(`stages`);
+export const getStages = async (cultureID: number): Promise<Stages[]> => {
+  const response = await api.get(`/stages/${cultureID}`);
   return response.data;
-}
+};
