@@ -1,25 +1,9 @@
 import "./styles.scss";
 import DataTableRow from "../DataTableRow";
-import { useEffect, useState } from "react";
-import { userById } from "../../services/users";
-import { User, UserDataProps } from "../../types/userDataTypes";
+import { UserDataProps } from "../../types/userDataTypes";
 import { Skeleton } from "@mui/material";
 
-const UserDatas = ({ userID }: UserDataProps) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [result, setResult] = useState<any>();
-  useEffect(() => {
-    userById(userID)
-      .then((result) => {
-        setResult(result);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-    if (result?.name) setUser(result);
-    console.log(result);
-  }, [user, userID, result]);
-
+const UserDatas = ({ user }: UserDataProps) => {
   return (
     <div className="userDataContainer">
       {user ? (

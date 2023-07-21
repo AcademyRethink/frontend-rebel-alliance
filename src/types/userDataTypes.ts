@@ -1,6 +1,5 @@
 export type UserDataProps = {
-  className?: string;
-  userID: number;
+  user: User;
 };
 
 export type User = {
