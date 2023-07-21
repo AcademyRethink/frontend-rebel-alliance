@@ -37,7 +37,9 @@ const Graphic = ({
           temp: weatherResponse.list?.map((hour) =>
             Number(hour.main.temp.toFixed(1))
           ),
-          rain: weatherResponse.list?.map((hour) => hour.pop * 100),
+          rain: weatherResponse.list?.map((hour) =>
+            Number((hour.pop * 100).toFixed(1))
+          ),
           wind: weatherResponse.list?.map((hour) =>
             Number((hour.wind.speed * 3.6).toFixed(1))
           ),
