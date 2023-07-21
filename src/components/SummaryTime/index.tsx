@@ -1,9 +1,10 @@
 import "./styles.scss";
 import { DataWeather } from "./controller";
-const SummaryTime = ({ resume }: { resume: boolean }) => {
+import { SummaryTimeType } from "../../types/weatherTypes";
+const SummaryTime = ({ farmID, resume }: SummaryTimeType) => {
   return (
     <>
-      <DataWeather resume={resume} />
+      <DataWeather resume={resume} farmID={farmID} />
     </>
   );
 };

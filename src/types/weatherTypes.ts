@@ -1,3 +1,5 @@
+export type SummaryTimeType = { farmID: number; resume: boolean };
+
 export type DateObject = {
   dayOfWeekText: string;
   day: number;

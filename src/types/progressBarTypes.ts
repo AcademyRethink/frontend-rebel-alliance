@@ -1,5 +1,6 @@
 export type ProgressBarComponentProps = {
-  className: string;
+  className?: string;
+  label: string;
   stages: StagesWithName[];
   actualStageOrder: number;
 };
