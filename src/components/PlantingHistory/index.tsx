@@ -25,7 +25,7 @@ const PlantingHistory = ({ className, plotID }: PlantingHistoryProps) => {
       {plantings.map((planting) => (
         <PlantingItem
           className="plantingHistoryItem"
-          key={planting.plot_id}
+          key={planting.planting_id}
           startDate={makeDateOutput(planting.date)}
           finalDate={makeDateOutput(planting.date, finalYear)}
           saplings={String(planting.saplings)}
