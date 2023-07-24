@@ -8,4 +8,11 @@ export type TextInputProps = {
   errorMessage?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   required?: boolean;
+  readOnly?: boolean;
+};
+
+export type SearchInput = {
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onClick?: () => void;
 };

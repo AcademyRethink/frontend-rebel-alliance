@@ -1,39 +1,18 @@
 import "./styles.scss";
-import { useState } from "react";
+import { SearchInput } from "../../types/InputTypes";
 import searchIcon from "../../assets/searchIcon.svg";
 import "./styles.scss";
 
-const PlotSearchInput = () => {
-  const [plotName, setPlotName] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-
-  const handleSearch = async () => {
-    console.log(searchResult);
-    try {
-      const response = await fetch(
-        `https://backend-rebel-alliance.vercel.app/plantings?farm=1&plot=82&name=${plotName}`
-      );
-      const data = await response.json();
-      setSearchResult(data);
-    } catch (error) {
-      console.error("Erro ao buscar talhões:", error);
-      setSearchResult([]);
-    }
-  };
-
-  const handleIconClick = () => {
-    handleSearch();
-  };
-
+const PlotSearchInput = ({ value, onChange, onClick }: SearchInput) => {
   return (
     <div className="searchPlotInputContainer">
       <input
         type="text"
-        value={plotName}
-        onChange={(e) => setPlotName(e.target.value)}
+        value={value}
+        onChange={onChange}
         placeholder="Pesquisar talhão"
       />
-      <button className="icon-button" onClick={handleIconClick}>
+      <button className="icon-button" onClick={onClick}>
         <img src={searchIcon} alt="Ícone do talhão" />
       </button>
     </div>
