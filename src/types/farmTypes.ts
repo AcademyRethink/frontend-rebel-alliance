@@ -23,5 +23,8 @@ export type PlantingDataProps = {
   cultureID: number;
   add?: boolean;
   onAdd?: () => void;
+  buttonText?: string;
+  onButton?: () => void;
+  plotName?: string;
   fetchData?: () => void;
 };

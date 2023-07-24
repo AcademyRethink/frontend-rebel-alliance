@@ -9,12 +9,16 @@ import { PlantingDataProps } from "../../types/farmTypes";
 import { makeDateOutput } from "../../utils/itemsFunctions";
 import editIcon from "../../assets/button/editIcon.svg";
 import EditCard from "../EditCard";
+import { Skeleton } from "@mui/material";
 
 const PlantingData = ({
   plotData,
   cultureID,
   add = false,
   onAdd,
+  buttonText = "Mais detalhes",
+  onButton,
+  plotName = " ",
   fetchData,
 }: PlantingDataProps) => {
   const [stages, setStages] = useState<Stages[]>();
@@ -67,7 +71,7 @@ const PlantingData = ({
             mode === "normal" ? "emphasis" : ""
           }`}
         >
-          <EditCard handleMode={handleModeForNormal} />
+          <EditCard handleMode={handleModeForNormal} plotName={plotName} />
           <div className="infoStages">
             {stages && (
               <ProgressBar
@@ -126,10 +130,20 @@ const PlantingData = ({
               />
             )}
 
-            <Button className="normalButton" text="Mais detalhes" />
+            {mode !== "edit" && (
+              <Button
+                className="normalButton"
+                text={buttonText}
+                onClick={onButton}
+              />
+            )}
           </div>
         </div>
       </>
+    );
+  } else {
+    return (
+      <Skeleton variant="rounded" sx={{ bgcolor: "grey.400" }} height={230} />
     );
   }
 };

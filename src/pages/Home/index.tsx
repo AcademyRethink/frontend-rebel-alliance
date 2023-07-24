@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from "react";
 import { getPlotgByFarmID } from "../../services/plot";
 import PlantingData from "../../components/PlantingData";
@@ -8,10 +9,11 @@ import "./styles.scss";
 import Button from "./../../components/Button";
 import HomeLoading from "./../../screens/ExampleScreen/Home";
 import welcome from "./../../assets/welcome.svg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { userData } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [dataPlot, setDataPlot] = useState<Array<PlotWithFarm>>();
   const [showAddPlanting, setShowAddPlanting] = useState(false);
   const [showBlurry, setShowBlurry] = useState(false);
@@ -22,7 +24,6 @@ const Home = () => {
       .then((response) => {
         setDataPlot(response);
         setIsLoading(false);
-        console.log(dataPlot);
       })
       .catch((error) => {
         console.log(error);
@@ -86,6 +87,7 @@ const Home = () => {
                   cultureID={1}
                   key={plot.plot_id}
                   fetchData={fetchData}
+                  onButton={() => navigate(`/talhao/${plot.plot_id}`)}
                 />
               ))}
           </>

@@ -7,18 +7,25 @@ import TextInput from "./../Input";
 import Dropdown from "../Dropdown";
 import Button from "./../../components/Button";
 import { Stages } from "./../../types/stageTypes";
-import { PlantingType } from "../../types/plantinTypes";
-import { EdidCardProps } from "../../types/editCardTypes";
 import "./styles.scss";
+import { PlantingType } from "../../types/plantingTypes";
 
-const EditCard = ({ plantingId, handleMode }: EdidCardProps) => {
+const EditCard = ({
+  plantingId,
+  handleMode,
+  plotName,
+}: {
+  plantingId?: number;
+  handleMode: () => void;
+  plotName?: string;
+}) => {
   const { userData } = useContext(AuthContext);
   const [mode, setMode] = useState("add");
-  const [selectedOption, setSelectedOption] = useState("Plantio");
+  const [selectedOption, setSelectedOption] = useState<string>("Plantio");
   const [dataPlanting, setDataPlanting] = useState<PlantingType>({
     date: "",
     saplings: undefined,
-    plot: "",
+    plot: plotName ? plotName : "",
     stage: "Plantio",
     user: userData.info.cpf_cnpj,
     farm: "",
@@ -58,6 +65,7 @@ const EditCard = ({ plantingId, handleMode }: EdidCardProps) => {
         farm: response,
       }));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChange = (value: string, key: string) => {
@@ -95,7 +103,6 @@ const EditCard = ({ plantingId, handleMode }: EdidCardProps) => {
 
   const handleButtonClick = (event: React.FormEvent) => {
     event.preventDefault();
-
     if (mode === "edit") {
       api
         .put(`plantings/${plantingId}`, dataPlanting)

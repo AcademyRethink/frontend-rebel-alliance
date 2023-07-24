@@ -59,11 +59,12 @@ export const fetchWeatherHourlyData = async (
 };
 
 export const fetchWeatherDailyData = async (
-  city: string,
+  farmID: number,
   days = 7
 ): Promise<{ weather: DailyWeather } | undefined> => {
   try {
-    const weather = await getDailyWeatherByCity(city, days);
+    const farm = await getFarmById(farmID);
+    const weather = await getDailyWeatherByCity(farm?.address?.city, days);
     return { weather };
   } catch (error) {
     console.log(error);

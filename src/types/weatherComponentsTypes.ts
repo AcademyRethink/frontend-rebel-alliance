@@ -18,6 +18,6 @@ export type ClimateWeatherCard = {
 
 export type WeatherWeekProps = {
   className?: string;
-  city: string;
+  farmID: number;
   days?: number;
 };
