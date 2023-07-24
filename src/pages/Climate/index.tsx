@@ -6,10 +6,11 @@ import WeatherWeek from "../../components/WeatherWeek";
 import SelectGraphic from "../../components/SelectGraphic";
 import { useContext } from "react";
 import { AuthContext } from "../../controllers/contextController";
+import { useNavigate } from "react-router-dom";
 
 const Climate = () => {
   const { userData } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   if (userData?.token) {
     return (
       <div className="pageClimateContainer">

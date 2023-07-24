@@ -11,6 +11,7 @@ import storm from "../../assets/weatherCard/storm.svg";
 import clouds from "../../assets/weatherCard/clouds.svg";
 import cloudsSun from "../../assets/weatherCard/cloudSun.svg";
 import suny from "../../assets/weatherCard/suny.svg";
+import { useNavigate } from "react-router-dom";
 
 const allClimate = {
   algumas: cloudsSun,
@@ -25,7 +26,7 @@ export const DataWeather = ({ farmID, resume }: SummaryTimeType) => {
   const [data, setData] = useState<{ weather?: HourlyWeather; farm?: Farm }>(
     {}
   );
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetchWeatherHourlyData(farmID)
       .then((response) =>
@@ -47,10 +48,7 @@ export const DataWeather = ({ farmID, resume }: SummaryTimeType) => {
 
   if (resume) {
     return (
-      <div
-        className="containerSummaryTime"
-        onClick={() => (window.location.href = "/clima")}
-      >
+      <div className="containerSummaryTime" onClick={() => navigate("/clima")}>
         <div className="containerDateAndLocal">
           <time>
             <DayController />
