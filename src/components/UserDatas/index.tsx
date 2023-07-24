@@ -1,6 +1,6 @@
 import "./styles.scss";
-import DataTableRow from "../DataTableRow";
 import { User, UserDataProps } from "../../types/userDataTypes";
+import DataTableRow from "../DataTableRow";
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { userById } from "../../services/users";

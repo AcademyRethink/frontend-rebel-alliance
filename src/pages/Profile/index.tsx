@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../controllers/contextController";
 
 const Profile = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext); //busca de dados do usuário
   if (userData?.token) {
     return (
       <div className="profileContainer">
