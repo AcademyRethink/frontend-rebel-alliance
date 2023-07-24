@@ -1,6 +1,6 @@
 import "./styles.scss";
-import DataTableRow from "../DataTableRow";
 import { UserDataProps } from "../../types/userDataTypes";
+import DataTableRow from "../DataTableRow";
 import { Skeleton } from "@mui/material";
 
 const UserDatas = ({ user }: UserDataProps) => {
