@@ -34,8 +34,7 @@ const getLastActivePlanting = (
 
 const Plot = () => {
   const { userData } = useContext(AuthContext);
-  // const { id } = useParams();
-  const id = 83;
+  const { id } = useParams();
   const [plantings, setPlantings] = useState<Planting[]>();
   const [activePlantingID, setActivePlatingID] = useState<number>(0);
   const [plotInfo, setPlotInfo] = useState<PlotWithFarm>();

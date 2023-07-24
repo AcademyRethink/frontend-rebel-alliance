@@ -8,10 +8,11 @@ import "./styles.scss";
 import Button from "./../../components/Button";
 import HomeLoading from "./../../screens/ExampleScreen/Home";
 import welcome from "./../../assets/welcome.svg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { userData } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [dataPlot, setDataPlot] = useState<Array<PlotWithFarm>>();
   const [showAddPlanting, setShowAddPlanting] = useState(false);
   const [showBlurry, setShowBlurry] = useState(false);
@@ -51,6 +52,10 @@ const Home = () => {
     setShowBlurry(false);
   };
 
+  const navigateMoreDetails = (plotID: number) => {
+    navigate(`/talhao/${plotID}`);
+  };
+
   if (isLoading) {
     return <HomeLoading />;
   }
@@ -86,6 +91,7 @@ const Home = () => {
                   cultureID={1}
                   key={plot.plot_id}
                   fetchData={fetchData}
+                  onButton={() => navigate(`/talhao/${plot.plot_id}`)}
                 />
               ))}
           </>
