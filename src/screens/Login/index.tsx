@@ -15,6 +15,25 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<any>();
   const [stayLogged, setStayLogged] = useState(false);
+
+  const loginButtonHandler = async () => {
+    try {
+      await login(user, password, stayLogged);
+    } catch (error: any) {
+      if (error.message) {
+        if (error.message === "User not Found") {
+          setErrorMessage({ message: error.message, type: "login" });
+        } else if (error.message === "Wrong Password") {
+          setErrorMessage({
+            message: error.message,
+            type: "password",
+          });
+        } else {
+          console.log(error.message);
+        }
+      }
+    }
+  };
   return (
     <div className="LoginPage">
       <div className="LoginContainer">
@@ -64,20 +83,7 @@ const LoginScreen = () => {
             className="largeButton"
             iconRight={iconLogin}
             onClick={async () => {
-              try {
-                await login(user, password, stayLogged);
-              } catch (error: any) {
-                if (error.message) {
-                  if (error.message === "User not Found") {
-                    setErrorMessage({ message: error.message, type: "login" });
-                  } else {
-                    setErrorMessage({
-                      message: error.message,
-                      type: "password",
-                    });
-                  }
-                }
-              }
+              await loginButtonHandler();
             }}
           />
         </div>
