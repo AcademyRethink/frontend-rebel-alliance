@@ -19,6 +19,12 @@ export type Farm = {
 };
 
 export type PlantingDataProps = {
-  plotData: PlotWithFarm;
+  plotData?: PlotWithFarm;
   cultureID: number;
+  add?: boolean;
+  onAdd?: () => void;
+  buttonText?: string;
+  onButton?: () => void;
+  plotName?: string;
+  fetchData?: () => void;
 };

@@ -1,12 +1,17 @@
 /* eslint-disable no-empty */
 import Login from "../../screens/Login";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../controllers/contextController";
 import Home from "../Home";
 const AuthPage = () => {
   const { userData, validateToken } = useContext(AuthContext);
-  if (localStorage.getItem("token"))
-    validateToken(localStorage.getItem("token"));
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      validateToken(localStorage.getItem("token"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (userData?.token) return <Home />;
   else return <Login />;

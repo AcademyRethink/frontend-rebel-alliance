@@ -1,9 +1,23 @@
 import "./styles.scss";
-import { UserDataProps } from "../../types/userDataTypes";
+import { User, UserDataProps } from "../../types/userDataTypes";
 import DataTableRow from "../DataTableRow";
 import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { userById } from "../../services/users";
 
-const UserDatas = ({ user }: UserDataProps) => {
+const UserDatas = ({ userID }: UserDataProps) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    userById(userID)
+      .then((result) => {
+        setUser(result);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, [userID]);
+
   return (
     <div className="userDataContainer">
       {user ? (

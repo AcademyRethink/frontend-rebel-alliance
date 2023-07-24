@@ -4,6 +4,7 @@ import Climate from "./pages/Climate";
 import Profile from "./pages/Profile";
 import AuthPage from "./pages/Auth";
 import AuthProvider from "./controllers/contextController";
+import Plot from "./pages/Plot";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<AuthPage />} />
-            <Route path="/plantio/:id" />
+            <Route path="/talhao/:id" element={<Plot />} />
             <Route path="/clima" element={<Climate />} />
             <Route path="/perfil" element={<Profile />} />
           </Routes>

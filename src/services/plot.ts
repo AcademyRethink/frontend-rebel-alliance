@@ -1,9 +1,17 @@
 import { PlotWithFarm } from "../types/plotTypes";
 import api from "./api";
 
-export const getPlotgByName = async (
-  farmName: string
-): Promise<PlotWithFarm> => {
-  const response = await api.get(`/plots/planting/farm/${farmName}`);
+export const getPlotgByFarmID = async (
+  farmID: number
+): Promise<Array<PlotWithFarm>> => {
+  const response = await api.get(`/plots/planting/farm/${farmID}`);
+  return response.data;
+};
+
+export const getAPlotgByIdAndFarmID = async (
+  plotID: number,
+  farmID: number
+): Promise<Array<PlotWithFarm>> => {
+  const response = await api.get(`/plots/${plotID}/farm/${farmID}`);
   return response.data;
 };

@@ -7,4 +7,5 @@ export type TextInputProps = {
   icon?: string;
   errorMessage?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  required?: boolean;
 };

@@ -2,9 +2,9 @@ import { Skeleton } from "@mui/material";
 import "./styles.scss";
 import SideBar from "../SideBar";
 
-const Home = () => {
+const HomeLoading = () => {
   return (
-    <div className="cointainerHome">
+    <div className="cointainerHomeLoading">
       <SideBar />
       <div className="mainContentHome">
         <div>
@@ -64,16 +64,15 @@ const Home = () => {
           width={1100}
           height={112}
         />
-
         <Skeleton
           variant="rounded"
           sx={{ bgcolor: "grey.400" }}
-          width={164}
-          height={24}
+          width={1100}
+          height={112}
         />
       </div>
     </div>
   );
 };
 
-export default Home;
+export default HomeLoading;
