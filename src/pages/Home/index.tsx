@@ -57,17 +57,6 @@ const Home = () => {
   };
   const filterHandler = () => {
     setFilterIcon(!filterIcon);
-  };
-  useEffect(() => {
-    if (!showBlurry) {
-      fetchData();
-    }
-  }, []);
-
-  useEffect(() => {
-    // if (searchData === "") {
-    //   fetchData();
-    // }
     dataPlot?.sort((a, b) => {
       const aDate = new Date(a.planting_date);
       const bDate = new Date(b.planting_date);
@@ -75,8 +64,12 @@ const Home = () => {
         ? aDate.getTime() - bDate.getTime()
         : bDate.getTime() - aDate.getTime();
     });
-    console.log(dataPlot);
-  }, [filterIcon]);
+  };
+  useEffect(() => {
+    if (!showBlurry) {
+      fetchData();
+    }
+  }, []);
 
   const handleNewPlanting = () => {
     setShowAddPlanting(true);
@@ -147,7 +140,6 @@ const Home = () => {
         {dataPlot && dataPlot.length > 0 ? (
           <>
             {dataPlot.map((plot) => {
-              console.log(dataPlot);
               return (
                 <PlantingData
                   plotData={plot}
