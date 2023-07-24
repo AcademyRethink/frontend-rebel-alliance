@@ -138,6 +138,7 @@ const EditCard = ({
             placeHolder="Talhão"
             onChange={(event) => handleInputChange(event.target.value, "plot")}
             required={true}
+            readOnly={true}
           />
         </div>
         <div className="containerInputEditCard">

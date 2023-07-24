@@ -8,4 +8,5 @@ export type TextInputProps = {
   errorMessage?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   required?: boolean;
+  readOnly?: boolean;
 };

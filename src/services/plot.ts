@@ -4,7 +4,7 @@ import api from "./api";
 export const getPlotgByFarmID = async (
   farmID: number
 ): Promise<Array<PlotWithFarm>> => {
-  const response = await api.get(`/plots/planting/farm/${farmID}`);
+  const response = await api.get(`/plots/planting/farm?farm=${farmID}`);
   return response.data;
 };
 
