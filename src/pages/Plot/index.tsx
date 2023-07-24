@@ -55,8 +55,6 @@ const Plot = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, addNewPlanting, updatePage]);
 
-  console.log(plantings);
-
   const handleAddNewPlanting = () => {
     setAddNewPlanting((prev) => !prev);
     handleUpdatePage();

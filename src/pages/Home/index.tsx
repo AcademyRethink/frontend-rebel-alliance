@@ -24,7 +24,6 @@ const Home = () => {
       .then((response) => {
         setDataPlot(response);
         setIsLoading(false);
-        console.log(dataPlot);
       })
       .catch((error) => {
         console.log(error);

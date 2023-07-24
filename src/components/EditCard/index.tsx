@@ -103,7 +103,6 @@ const EditCard = ({
 
   const handleButtonClick = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(dataPlanting);
     if (mode === "edit") {
       api
         .put(`plantings/${plantingId}`, dataPlanting)
