@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from "react";
 import { getPlotgByFarmID } from "../../services/plot";
 import PlantingData from "../../components/PlantingData";
@@ -50,10 +51,6 @@ const Home = () => {
   const handlePlantingAdd = () => {
     setShowAddPlanting(false);
     setShowBlurry(false);
-  };
-
-  const navigateMoreDetails = (plotID: number) => {
-    navigate(`/talhao/${plotID}`);
   };
 
   if (isLoading) {
