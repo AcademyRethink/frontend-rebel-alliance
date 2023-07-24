@@ -26,4 +26,5 @@ export type PlantingDataProps = {
   buttonText?: string;
   onButton?: () => void;
   plotName?: string;
+  fetchData?: () => void;
 };

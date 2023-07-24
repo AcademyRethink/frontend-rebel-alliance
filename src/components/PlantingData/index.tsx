@@ -19,6 +19,7 @@ const PlantingData = ({
   buttonText = "Mais detalhes",
   onButton,
   plotName = " ",
+  fetchData,
 }: PlantingDataProps) => {
   const [stages, setStages] = useState<Stages[]>();
   const [mode, setMode] = useState("normal");
@@ -37,13 +38,16 @@ const PlantingData = ({
 
   const handleModeForEdit = () => {
     setMode("edit");
+    setShowBlurry(false);
   };
 
   const handleModeForNormal = () => {
     setMode("normal");
+    fetchData?.();
     if (onAdd) {
       onAdd();
     }
+    setShowBlurry(false);
   };
 
   const handleBlurryClick = () => {

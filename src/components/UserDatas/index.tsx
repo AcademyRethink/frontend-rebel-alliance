@@ -1,8 +1,6 @@
 import "./styles.scss";
 import DataTableRow from "../DataTableRow";
-import { useEffect, useState } from "react";
-import { userById } from "../../services/users";
-import { User, UserDataProps } from "../../types/userDataTypes";
+import { UserDataProps } from "../../types/userDataTypes";
 import { Skeleton } from "@mui/material";
 
 const UserDatas = ({ userID }: UserDataProps) => {

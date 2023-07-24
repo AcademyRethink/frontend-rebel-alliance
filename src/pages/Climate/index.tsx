@@ -9,6 +9,7 @@ import { AuthContext } from "../../controllers/contextController";
 
 const Climate = () => {
   const { userData } = useContext(AuthContext);
+
   if (userData?.token) {
     return (
       <div className="pageClimateContainer">

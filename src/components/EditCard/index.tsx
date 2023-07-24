@@ -27,8 +27,7 @@ const EditCard = ({
     saplings: undefined,
     plot: plotName ? plotName : "",
     stage: "Plantio",
-    // user: userData.info.cpf_cnpj,
-    user: "09579219699",
+    user: userData.info.cpf_cnpj,
     farm: "",
   });
   const [options, setOptions] = useState<Array<string>>([]);
@@ -60,8 +59,7 @@ const EditCard = ({
       const stageName: string[] = sortedStages.map((stage) => stage.stage);
       setOptions(stageName);
     });
-    // userData.info.farm_id
-    getFarmName(2).then((response) => {
+    getFarmName(userData.info.farm_id).then((response) => {
       setDataPlanting((prevData) => ({
         ...prevData,
         farm: response,
@@ -72,16 +70,11 @@ const EditCard = ({
   const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
       value = value.replace(/\D/g, "");
-      setDataPlanting((prevData) => ({
-        ...prevData,
-        [key]: Number(value),
-      }));
-    } else {
-      setDataPlanting((prevData) => ({
-        ...prevData,
-        [key]: value,
-      }));
     }
+    setDataPlanting((prevData) => ({
+      ...prevData,
+      [key]: key === "saplings" ? Number(value) : value,
+    }));
   };
 
   const handleSelectOption = (option: string) => {
@@ -98,14 +91,13 @@ const EditCard = ({
     plot: string,
     stage: string
   ) => {
-    setDataPlanting({
+    setDataPlanting((prevData) => ({
+      ...prevData,
       date,
       saplings,
       plot,
       stage,
-      user: "33333333333",
-      farm: "Fazenda Rebel Alliance",
-    });
+    }));
   };
 
   const handleButtonClick = (event: React.FormEvent) => {
@@ -123,7 +115,6 @@ const EditCard = ({
         });
     }
     if (mode === "add") {
-      console.log(dataPlanting);
       api
         .post("/plantings", dataPlanting)
         .then((response) => {
