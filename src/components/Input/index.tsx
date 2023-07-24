@@ -10,6 +10,7 @@ const TextInput = ({
   errorMessage,
   onChange,
   required,
+  readOnly,
 }: TextInputProps) => {
   const id = Math.random();
   return (
@@ -24,6 +25,7 @@ const TextInput = ({
         onChange={onChange}
         disabled={className === "Disable" ? true : false}
         required={required}
+        readOnly={readOnly}
       />
       {className === "TextInputError" && errorMessage && <p>{errorMessage}</p>}
     </div>

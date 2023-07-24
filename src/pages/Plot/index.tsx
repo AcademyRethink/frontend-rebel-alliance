@@ -42,6 +42,7 @@ const Plot = () => {
   const [updatePage, setUpdatePage] = useState<number>(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAPlotgByIdAndFarmID(Number(id), userData.info.farm_id)
       .then((response) => setPlotInfo(response[0]))
       .catch(console.log);
