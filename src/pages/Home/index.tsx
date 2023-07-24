@@ -28,6 +28,12 @@ const Home = () => {
   const [searchData, setSearchData] = useState("");
   const [filterIcon, setFilterIcon] = useState(true);
 
+  useEffect(() => {
+    if (!showBlurry) {
+      fetchData();
+    }
+  }, []);
+
   const fetchData = () => {
     getPlotgByFarmID(userData.info.farm_id)
       .then((response) => {
@@ -49,13 +55,22 @@ const Home = () => {
   const fetchPlotByName = (name: string) => {
     getPlotByNameAndFarmID(name, userData.info.farm_id)
       .then((response) => {
-        setDataPlot(response);
+        setDataPlot(
+          response.sort((a: PlotWithFarm, b: PlotWithFarm) => {
+            const aDate = new Date(a.planting_date);
+            const bDate = new Date(b.planting_date);
+            return filterIcon
+              ? bDate.getTime() - aDate.getTime()
+              : aDate.getTime() - bDate.getTime();
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
         setIsLoading(false);
       });
   };
+
   const filterHandler = () => {
     setFilterIcon(!filterIcon);
     dataPlot?.sort((a, b) => {
@@ -66,11 +81,6 @@ const Home = () => {
         : bDate.getTime() - aDate.getTime();
     });
   };
-  useEffect(() => {
-    if (!showBlurry) {
-      fetchData();
-    }
-  }, []);
 
   const handleNewPlanting = () => {
     setShowAddPlanting(true);
