@@ -1,9 +1,9 @@
 import { PlotWithFarm } from "../types/plotTypes";
 import api from "./api";
 
-export const getPlotgByFarmID = async (
-  farmID: number
+export const getPlotgByName = async (
+  farmName: string
 ): Promise<PlotWithFarm> => {
-  const response = await api.get(`/plots/planting/farm/${farmID}`);
+  const response = await api.get(`/plots/planting/farm/${farmName}`);
   return response.data;
 };

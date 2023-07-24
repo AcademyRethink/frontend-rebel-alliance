@@ -18,3 +18,7 @@ export type PlotWithFarm = {
   stage_order: number;
   harvests: string;
 };
+
+export type PlotInputProps = {
+  onSearch: (plotName: string) => void;
+};
