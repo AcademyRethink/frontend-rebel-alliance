@@ -8,13 +8,14 @@ import SideBar from "../../components/SideBar";
 import PlotSearchInput from "../../components/PlotSearchInput";
 import Title from "../../components/Title";
 import SummaryTime from "../../components/SummaryTime";
-import FilterDate from "../../components/FilterDate";
 import { PlotWithFarm } from "../../types/plotTypes";
 import "./styles.scss";
 import Button from "./../../components/Button";
 import HomeLoading from "./../../screens/ExampleScreen/Home";
 import welcome from "./../../assets/welcome.svg";
 import { useNavigate } from "react-router-dom";
+import mostRecentIcon from "../../assets/home/mostRecentIcon.svg";
+import oldestIcon from "../../assets/home/oldestIcon.svg";
 
 const Home = () => {
   const { userData } = useContext(AuthContext);
@@ -24,11 +25,18 @@ const Home = () => {
   const [showBlurry, setShowBlurry] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchData, setSearchData] = useState("");
+  const [filterIcon, setFilterIcon] = useState(true);
 
   const fetchData = () => {
     getPlotgByFarmID(userData.info.farm_id)
       .then((response) => {
-        setDataPlot(response);
+        setDataPlot(
+          response.sort((a, b) => {
+            const aDate = new Date(a.planting_date);
+            const bDate = new Date(b.planting_date);
+            return bDate.getTime() - aDate.getTime();
+          })
+        );
         setIsLoading(false);
       })
       .catch((error) => {
@@ -47,12 +55,28 @@ const Home = () => {
         setIsLoading(false);
       });
   };
-
+  const filterHandler = () => {
+    setFilterIcon(!filterIcon);
+  };
   useEffect(() => {
     if (!showBlurry) {
       fetchData();
     }
-  }, [showBlurry]);
+  }, []);
+
+  useEffect(() => {
+    // if (searchData === "") {
+    //   fetchData();
+    // }
+    dataPlot?.sort((a, b) => {
+      const aDate = new Date(a.planting_date);
+      const bDate = new Date(b.planting_date);
+      return filterIcon
+        ? aDate.getTime() - bDate.getTime()
+        : bDate.getTime() - aDate.getTime();
+    });
+    console.log(dataPlot);
+  }, [filterIcon]);
 
   const handleNewPlanting = () => {
     setShowAddPlanting(true);
@@ -94,7 +118,14 @@ const Home = () => {
               fetchPlotByName(searchData);
             }}
           />
-          <FilterDate />
+          <Button
+            iconRight={filterIcon ? mostRecentIcon : oldestIcon}
+            text={filterIcon ? "Mais recente" : "Mais Antigo"}
+            className="filterButton"
+            onClick={() => {
+              filterHandler();
+            }}
+          />
         </div>
         {dataPlot && dataPlot.length > 0 ? (
           <Button
@@ -115,9 +146,9 @@ const Home = () => {
 
         {dataPlot && dataPlot.length > 0 ? (
           <>
-            {dataPlot
-              .sort((a, b) => b.plot_id - a.plot_id)
-              .map((plot) => (
+            {dataPlot.map((plot) => {
+              console.log(dataPlot);
+              return (
                 <PlantingData
                   plotData={plot}
                   cultureID={1}
@@ -125,7 +156,8 @@ const Home = () => {
                   fetchData={fetchData}
                   onButton={() => navigate(`/talhao/${plot.plot_id}`)}
                 />
-              ))}
+              );
+            })}
           </>
         ) : (
           <div className="containerWelcome">
