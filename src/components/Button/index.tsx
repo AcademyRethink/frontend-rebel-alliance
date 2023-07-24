@@ -7,9 +7,14 @@ const Button = ({
   iconLeft,
   iconRight,
   onClick,
+  type = "button",
 }: ButtonProps) => {
   return (
-    <button className={`defaultButton ${className}`} onClick={onClick}>
+    <button
+      className={`defaultButton ${className}`}
+      onClick={onClick}
+      type={type}
+    >
       {iconLeft && <img src={iconLeft} alt={iconLeft} />}
       {text}
       {iconRight && <img src={iconRight} alt={iconRight} />}

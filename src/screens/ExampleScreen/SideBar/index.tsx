@@ -3,7 +3,7 @@ import { Skeleton } from "@mui/material";
 
 const SideBar = () => {
   return (
-    <div className="sideBar">
+    <div className="sideBarLoading">
       <Skeleton
         variant="rounded"
         sx={{ bgcolor: "grey.400" }}
