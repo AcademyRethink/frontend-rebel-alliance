@@ -8,6 +8,7 @@ const PlotSearchInput = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   const handleSearch = async () => {
+    console.log(searchResult);
     try {
       const response = await fetch(
         `https://backend-rebel-alliance.vercel.app/plantings?farm=1&plot=82&name=${plotName}`

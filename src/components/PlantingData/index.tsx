@@ -39,6 +39,7 @@ const PlantingData = ({
   const handleModeForEdit = () => {
     setMode("edit");
     setShowBlurry(false);
+    console.log(showBlurry);
   };
 
   const handleModeForNormal = () => {
