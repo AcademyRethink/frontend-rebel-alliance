@@ -12,8 +12,10 @@ const Profile = () => {
       <div className="profileContainer">
         <SideBar />
         <div className="dataProfileContainer">
-          <Title fontSize="" fontWeight="" text="Perfil" hasIcon hasLine />
-          <UserDatas userID={userData.info.id} />
+          <div className="profileTitle">
+            <Title fontSize="" fontWeight="" text="Perfil" hasIcon hasLine />
+          </div>
+          <UserDatas  userID={userData.info.id} />
         </div>
       </div>
     );

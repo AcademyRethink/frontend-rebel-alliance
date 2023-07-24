@@ -8,6 +8,7 @@ import SideBar from "../../components/SideBar";
 import PlotSearchInput from "../../components/PlotSearchInput";
 import Title from "../../components/Title";
 import SummaryTime from "../../components/SummaryTime";
+import "./styles.scss";
 import { PlotWithFarm } from "../../types/plotTypes";
 import "./styles.scss";
 import Button from "./../../components/Button";

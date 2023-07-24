@@ -5,13 +5,14 @@ import iconClima from "./../../assets/sideBar/iconClima.svg";
 import iconPerfil from "./../../assets/sideBar/iconPerfil.svg";
 import iconExit from "./../../assets/sideBar/iconExit.svg";
 import Button from "../Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../controllers/contextController";
 
 const SideBar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
     <div className="sideBar">
       <div className="containerLogo">
@@ -65,7 +66,7 @@ const SideBar = () => {
             iconLeft={iconExit}
             onClick={() => {
               logout();
-              window.location.href = "/";
+              navigate("/");
             }}
           />
         </div>
