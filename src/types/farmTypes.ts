@@ -1,3 +1,5 @@
+import { PlotWithFarm } from "./plotTypes";
+
 export type Farm = {
   id: number;
   cnpj: string;
@@ -14,4 +16,14 @@ export type Farm = {
     cep: string;
     reference_point: string;
   };
+};
+
+export type PlantingDataProps = {
+  plotData?: PlotWithFarm;
+  cultureID: number;
+  add?: boolean;
+  onAdd?: () => void;
+  buttonText?: string;
+  onButton?: () => void;
+  plotName?: string;
 };

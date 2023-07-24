@@ -6,3 +6,15 @@ export type Plot = {
   active: boolean;
   harvests: string;
 };
+
+export type PlotWithFarm = {
+  farm_id: number;
+  plot_id: number;
+  plot_name: string;
+  planting_id: number;
+  planting_date: string;
+  saplings: number;
+  stage: string;
+  stage_order: number;
+  harvests: string;
+};

@@ -5,8 +5,15 @@ import PlantingHistory from "../../components/PlantingHistory";
 import SideBar from "../../components/SideBar";
 import Title from "../../components/Title";
 import "./styles.scss";
-import { Planting } from "../../types/plantingTypes";
-import { getPlantingByPlotID } from "../../services/planting";
+import { Planting, PlantingType } from "../../types/plantingTypes";
+import {
+  getPlantingById,
+  getPlantingByPlotID,
+  putPlanting,
+} from "../../services/planting";
+import PlantingData from "../../components/PlantingData";
+import { PlotWithFarm } from "../../types/plotTypes";
+import { getAPlotgByIdAndFarmID } from "../../services/plot";
 // import { useContext } from "react";
 // import { AuthContext } from "../../controllers/contextController";
 
@@ -23,7 +30,6 @@ const getLastActivePlanting = (
       const plantingID = Math.max(
         ...allPlantings.map((planting) => planting.planting_id)
       );
-      console.log(plantingID);
       return plantingID;
     }
   } else {
@@ -34,13 +40,58 @@ const getLastActivePlanting = (
 const Plot = () => {
   // const { userData } = useContext(AuthContext);
   const { id } = useParams();
-  const [plantings, setPlatings] = useState<Planting[]>();
+  const [plantings, setPlantings] = useState<Planting[]>();
+  const [activePlantingID, setActivePlatingID] = useState<number>(0);
+  const [plotInfo, setPlotInfo] = useState<PlotWithFarm>();
+  // const [endPlantingData, setEndPlantingData] = useState<PlantingType>({
+  //   date: "",
+  //   saplings: 0,
+  //   plot: "",
+  //   stage: "Plantio",
+  //   user: "",
+  //   farm: "",
+  // });
+  const [addNewPlanting, setAddNewPlanting] = useState<boolean>(false);
+  const [updatePage, setUpdatePage] = useState<number>(0);
 
   useEffect(() => {
-    getPlantingByPlotID(Number(id))
-      .then((response) => setPlatings(response))
+    //userData.info.farm_id
+    getAPlotgByIdAndFarmID(Number(id), 2)
+      .then((response) => setPlotInfo(response[0]))
       .catch(console.log);
-  }, [id]);
+
+    getPlantingByPlotID(Number(id))
+      .then((response) => {
+        setPlantings(plantings);
+        setActivePlatingID(getLastActivePlanting(response));
+      })
+      // .then(() => {
+      //   getPlantingById(activePlantingID)
+      //     .then((response) =>
+      //       setEndPlantingData({
+      //         ...response[0],
+      //         user: "09579219699",
+      //         // user: userData.info.cpf_cnpj,
+      //         active: false,
+      //       })
+      //     )
+      // .catch(console.log);
+      // })
+      .catch(console.log);
+  }, [id, plantings, addNewPlanting, updatePage]);
+
+  const handleAddNewPlanting = () => {
+    setAddNewPlanting((prev) => !prev);
+    handleUpdatePage();
+  };
+
+  const handleUpdatePage = () => setUpdatePage((prev) => prev + 1);
+
+  // const handleEndPlanting = () => {
+  //   putPlanting(activePlantingID, endPlantingData)
+  //     .then(() => console.log("Success", endPlantingData))
+  //     .catch(console.log);
+  // };
 
   // if (userData?.token) {
   return (
@@ -57,13 +108,40 @@ const Plot = () => {
           />
         </div>
         <div className="plotInfos">
-          <div className="plotData"></div>
+          <div className="plotData">
+            {addNewPlanting ? (
+              <>
+                <div className="blurry" onClick={handleAddNewPlanting}></div>
+                <PlantingData
+                  cultureID={1}
+                  add={true}
+                  onAdd={handleAddNewPlanting}
+                  plotName={plotInfo?.plot_name}
+                />
+              </>
+            ) : (
+              <PlantingData
+                cultureID={1}
+                plotData={plotInfo}
+                buttonText="Novo plantio"
+                onButton={handleAddNewPlanting}
+                onAdd={handleUpdatePage}
+              />
+            )}
+          </div>
           <div className="plotHistorys">
             <HarvestHistory
               className="harvestHistory"
-              plantingID={getLastActivePlanting(plantings)}
+              plantingID={activePlantingID}
+              plotID={Number(id)}
+              stage={plotInfo?.stage}
+              onAdd={handleUpdatePage}
             />
-            <PlantingHistory className="plantingHistory" plotID={Number(id)} />
+            <PlantingHistory
+              className="plantingHistory"
+              plotID={Number(id)}
+              update={updatePage}
+            />
           </div>
         </div>
       </div>

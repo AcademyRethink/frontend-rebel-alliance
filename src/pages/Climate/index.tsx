@@ -27,9 +27,13 @@ const Climate = () => {
           <div className="climateData">
             <div className="mainInfos">
               <SummaryTime resume={false} farmID={userData.info.farm_id} />
-              <SelectGraphic farmID={26} />
+              <SelectGraphic farmID={userData.info.farm_id} />
             </div>
-            <WeatherWeek className="weekData" city="Ipatinga" days={8} />
+            <WeatherWeek
+              className="weekData"
+              farmID={userData.info.farm_id}
+              days={8}
+            />
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@
         padding: 0px 32px 48px;
 
         .plotTitle {
+            z-index: 1;
             position: fixed;
             width: calc(100% - 299px);
             height: 96px;
@@ -18,13 +19,16 @@
         }
 
         .plotInfos {
+            .emphasis {
+                position: relative;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                z-index: 1;
+            }
+
             padding-top: 150px;
     
             .plotData {
-                margin-bottom: 31px;
-                width: 100%;
-                height: 231px;
-                background-color: $monitore-defaultBackground;
+                margin-bottom: 32px;
             }
     
             .plotHistorys {
@@ -32,7 +36,7 @@
                 gap: 32px;
     
                 .harvestHistory {
-                    flex: 1;
+                    flex: 1.2;
                 }
                 
                 .plantingHistory {

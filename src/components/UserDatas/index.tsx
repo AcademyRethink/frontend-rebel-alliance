@@ -7,18 +7,18 @@ import { Skeleton } from "@mui/material";
 
 const UserDatas = ({ userID }: UserDataProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const [result, setResult] = useState<any>();
+
   useEffect(() => {
     userById(userID)
       .then((result) => {
-        setResult(result);
+        setUser(result);
       })
       .catch((error) => {
         alert(error);
       });
-    if (result?.name) setUser(result);
-    console.log(result);
-  }, [user, userID, result]);
+  }, [userID]);
+
+  console.log(user);
 
   return (
     <div className="userDataContainer">

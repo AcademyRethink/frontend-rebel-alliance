@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import { WeatherWeekProps } from "../../types/weatherComponentsTypes";
 import { DailyWeather, DateObject } from "../../types/weatherTypes";
 import {
@@ -10,20 +11,20 @@ import { useState, useEffect } from "react";
 const getDateOutput = (date: DateObject) =>
   `${date.day} de ${date.monthText.slice(0, 3)}`;
 
-const WeatherWeekData = ({ className, city, days }: WeatherWeekProps) => {
+const WeatherWeekData = ({ className, farmID, days }: WeatherWeekProps) => {
   const [data, setData] = useState<{ weather?: DailyWeather }>({});
 
   useEffect(() => {
-    fetchWeatherDailyData(city, days)
+    fetchWeatherDailyData(farmID, days)
       .then((response) => setData({ weather: response?.weather }))
       .catch();
-  }, [city, days]);
+  }, [farmID, days]);
 
   const weather = data.weather?.list;
 
   return (
     <div className={`weatherWeekDataContainer ${className}`}>
-      {weather &&
+      {weather ? (
         weather.map((dayWeather, index) => {
           const active = index === 0 ? true : false;
           const dateData = getDateObject(dayWeather.dt, true);
@@ -42,7 +43,10 @@ const WeatherWeekData = ({ className, city, days }: WeatherWeekProps) => {
               active={active}
             />
           );
-        })}
+        })
+      ) : (
+        <Skeleton variant="rounded" sx={{ bgcolor: "grey.400" }} height={700} />
+      )}
     </div>
   );
 };
