@@ -9,7 +9,6 @@ const AuthPage = () => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       validateToken(localStorage.getItem("token"));
-      console.log("oi");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
