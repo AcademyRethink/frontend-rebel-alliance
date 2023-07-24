@@ -103,33 +103,36 @@ const Home = () => {
         <SummaryTime farmID={userData.info.farm_id} resume={true} />
         <Title fontSize="32px" fontWeight="700" text="Talhão" hasLine />
         <div className="searchContainer">
-          <PlotSearchInput
-            value={searchData}
-            onChange={(event) => {
-              setSearchData(event.target.value);
-            }}
-            onClick={() => {
-              fetchPlotByName(searchData);
-            }}
-          />
-          <Button
-            iconRight={filterIcon ? mostRecentIcon : oldestIcon}
-            text={filterIcon ? "Mais recente" : "Mais Antigo"}
-            className="filterButton"
-            onClick={() => {
-              filterHandler();
-            }}
-          />
+          <div className="filterContainer">
+            <PlotSearchInput
+              value={searchData}
+              onChange={(event) => {
+                setSearchData(event.target.value);
+              }}
+              onClick={() => {
+                fetchPlotByName(searchData);
+              }}
+            />
+            <Button
+              iconRight={filterIcon ? mostRecentIcon : oldestIcon}
+              text={filterIcon ? "Mais recente" : "Mais Antigo"}
+              className="filterButton"
+              onClick={() => {
+                filterHandler();
+              }}
+            />
+          </div>
+
+          {dataPlot && dataPlot.length > 0 ? (
+            <Button
+              text="Adicionar Plantio"
+              className="largeButton"
+              onClick={handleNewPlanting}
+            />
+          ) : (
+            <></>
+          )}
         </div>
-        {dataPlot && dataPlot.length > 0 ? (
-          <Button
-            text="Adicionar Plantio"
-            className="largeButton"
-            onClick={handleNewPlanting}
-          />
-        ) : (
-          <></>
-        )}
 
         {showAddPlanting && (
           <>
@@ -152,7 +155,7 @@ const Home = () => {
               );
             })}
           </>
-        ) : (
+        ) : searchData.length < 0 ? (
           <div className="containerWelcome">
             <img src={welcome} alt="Imagem de boas vindas" />
             <h1>Boas-vindas ao Monitore!</h1>
@@ -162,6 +165,10 @@ const Home = () => {
               className="largeButton"
               onClick={handleNewPlanting}
             />
+          </div>
+        ) : (
+          <div className="containerNotFound">
+            <h2>Não encontramos o talhão desejado!</h2>
           </div>
         )}
       </div>

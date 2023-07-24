@@ -14,7 +14,11 @@
       display: flex;
       width: 100%;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+    }
+    .filterContainer {
+      display: flex;
+      gap: 32px;
     }
   }
 }
