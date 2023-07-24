@@ -11,9 +11,8 @@ import { makeDateOutput } from "../../utils/itemsFunctions";
 import Button from "../Button";
 import addIcon from "../../assets/addIcon.svg";
 import TextInput from "../Input";
-import { Skeleton } from "@mui/material";
-// import { useContext } from "react";
-// import { AuthContext } from "../../controllers/contextController";
+import { useContext } from "react";
+import { AuthContext } from "../../controllers/contextController";
 
 const getTodayDate = () => {
   const todayDate = new Date();
@@ -29,16 +28,14 @@ const HarvestHistory = ({
   stage,
   onAdd,
 }: HarvestHistoryProps) => {
-  // const { userData } = useContext(AuthContext);
+  const { userData } = useContext(AuthContext);
   const [harvests, setHarvests] = useState<Harvest[]>([]);
   const [newHarvest, setNewHarvest] = useState<boolean>(false);
   const [newHarvestData, setNewHarvesData] = useState<AddHarvest>({
     bags: 0,
     date: getTodayDate(),
-    farm_id: 2,
-    user_id: 1,
-    // farm_id: userData.info.farm_id,
-    // user_id: userData.info.id,
+    farm_id: userData.info.farm_id,
+    user_id: userData.info.id,
     planting_id: plantingID,
     plot_id: plotID,
   });
@@ -134,22 +131,14 @@ const HarvestHistory = ({
       <div className={`harvestHistoryContainer ${className}`}>
         <div className="harvestHistoryContent">
           <h2>Histórico de Colheitas</h2>
-          {harvests[0] ? (
-            harvests.map((harvest) => (
-              <HarvestItem
-                className="harvestHistoryItem"
-                key={harvest.id}
-                date={makeDateOutput(harvest.date)}
-                bags={String(harvest.bags)}
-              />
-            ))
-          ) : (
-            <Skeleton
-              variant="rounded"
-              sx={{ bgcolor: "grey.400" }}
-              height={450}
+          {harvests.map((harvest) => (
+            <HarvestItem
+              className="harvestHistoryItem"
+              key={harvest.id}
+              date={makeDateOutput(harvest.date)}
+              bags={String(harvest.bags)}
             />
-          )}
+          ))}
         </div>
         {stage && stage.toLowerCase() === "colheita" && (
           <Button

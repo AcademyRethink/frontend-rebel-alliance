@@ -1,7 +1,9 @@
 import "./styles.scss";
 import DataTableRow from "../DataTableRow";
-import { UserDataProps } from "../../types/userDataTypes";
+import { User, UserDataProps } from "../../types/userDataTypes";
 import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { userById } from "../../services/users";
 
 const UserDatas = ({ userID }: UserDataProps) => {
   const [user, setUser] = useState<User | null>(null);

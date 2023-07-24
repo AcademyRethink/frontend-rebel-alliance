@@ -65,6 +65,7 @@ const EditCard = ({
         farm: response,
       }));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChange = (value: string, key: string) => {
@@ -102,7 +103,7 @@ const EditCard = ({
 
   const handleButtonClick = (event: React.FormEvent) => {
     event.preventDefault();
-
+    console.log(dataPlanting);
     if (mode === "edit") {
       api
         .put(`plantings/${plantingId}`, dataPlanting)

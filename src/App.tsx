@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AuthPage />} />
             <Route path="/talhao/:id" element={<Plot />} />
-            <Route path="/clima" element={<Climate />} />
+            <Route path="/clima" element={<Plot />} />
             <Route path="/perfil" element={<Profile />} />
           </Routes>
         </AuthProvider>
