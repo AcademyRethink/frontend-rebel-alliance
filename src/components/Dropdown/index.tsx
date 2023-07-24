@@ -1,6 +1,6 @@
 import { useState } from "react";
 import iconArrowGray from "./../../assets/iconArrowGray.svg";
-import iconArrowBrown from "./../../assets/IconArrowBrown.svg";
+import iconArrowBrown from "./../../assets/iconArrowBrown.svg";
 import { DropdownType } from "../../types/dropdownTypes";
 import "./styles.scss";
 

@@ -7,19 +7,14 @@ import TextInput from "./../Input";
 import Dropdown from "../Dropdown";
 import Button from "./../../components/Button";
 import { Stages } from "./../../types/stageTypes";
-import "./styles.scss";
 import { PlantingType } from "../../types/plantinTypes";
+import { EdidCardProps } from "../../types/editCardTypes";
+import "./styles.scss";
 
-const EditCard = ({
-  plantingId,
-  handleMode,
-}: {
-  plantingId?: number;
-  handleMode: () => void;
-}) => {
+const EditCard = ({ plantingId, handleMode }: EdidCardProps) => {
   const { userData } = useContext(AuthContext);
   const [mode, setMode] = useState("add");
-  const [selectedOption, setSelectedOption] = useState<string>("Plantio");
+  const [selectedOption, setSelectedOption] = useState("Plantio");
   const [dataPlanting, setDataPlanting] = useState<PlantingType>({
     date: "",
     saplings: undefined,
@@ -49,7 +44,7 @@ const EditCard = ({
           console.error("Erro ao obter os dados do plantio", error);
         });
     }
-  }, []);
+  }, [plantingId]);
 
   useEffect(() => {
     getStages(1).then((response) => {
@@ -68,16 +63,11 @@ const EditCard = ({
   const handleInputChange = (value: string, key: string) => {
     if (key === "saplings") {
       value = value.replace(/\D/g, "");
-      setDataPlanting((prevData) => ({
-        ...prevData,
-        [key]: Number(value),
-      }));
-    } else {
-      setDataPlanting((prevData) => ({
-        ...prevData,
-        [key]: value,
-      }));
     }
+    setDataPlanting((prevData) => ({
+      ...prevData,
+      [key]: key === "saplings" ? Number(value) : value,
+    }));
   };
 
   const handleSelectOption = (option: string) => {
@@ -94,14 +84,13 @@ const EditCard = ({
     plot: string,
     stage: string
   ) => {
-    setDataPlanting({
+    setDataPlanting((prevData) => ({
+      ...prevData,
       date,
       saplings,
       plot,
       stage,
-      user: "33333333333",
-      farm: "Fazenda Rebel Alliance",
-    });
+    }));
   };
 
   const handleButtonClick = (event: React.FormEvent) => {
@@ -119,7 +108,6 @@ const EditCard = ({
         });
     }
     if (mode === "add") {
-      console.log(dataPlanting);
       api
         .post("/plantings", dataPlanting)
         .then((response) => {
