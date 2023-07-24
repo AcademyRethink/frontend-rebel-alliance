@@ -92,8 +92,8 @@ const Home = () => {
         ) : (
           <div className="containerWelcome">
             <img src={welcome} alt="Imagem de boas vindas" />
-            <h1>Boas vindas ao Monitore</h1>
-            <p>Comece a monitorar sua fazenda adicionando plantios</p>
+            <h1>Boas-vindas ao Monitore!</h1>
+            <p>Comece a monitorar sua fazenda adicionando plantios.</p>
             <Button
               text="Adicionar Plantio"
               className="largeButton"
