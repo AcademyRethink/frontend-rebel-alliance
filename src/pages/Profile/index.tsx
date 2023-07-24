@@ -13,7 +13,7 @@ const Profile = () => {
         <SideBar />
         <div className="dataProfileContainer">
           <Title fontSize="" fontWeight="" text="Perfil" hasIcon hasLine />
-          <UserDatas userID={userData.info} />
+          <UserDatas userID={userData.info.id} />
         </div>
       </div>
     );

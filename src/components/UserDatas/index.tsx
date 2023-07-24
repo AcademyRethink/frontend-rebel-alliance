@@ -18,8 +18,6 @@ const UserDatas = ({ userID }: UserDataProps) => {
       });
   }, [userID]);
 
-  console.log(user);
-
   return (
     <div className="userDataContainer">
       {user ? (
