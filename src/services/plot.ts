@@ -4,7 +4,7 @@ import api from "./api";
 export const getPlotgByFarmID = async (
   farmID: number
 ): Promise<Array<PlotWithFarm>> => {
-  const response = await api.get(`/plots/planting/farm/${farmID}`);
+  const response = await api.get(`/plots/planting/farm?farm=${farmID}`);
   return response.data;
 };
 
@@ -16,7 +16,12 @@ export const getAPlotgByIdAndFarmID = async (
   return response.data;
 };
 
-export const getPlotByName = async (farmName: string, farmID: number) => {
-  const response = await api.get(`/plantings?farm=${farmID}&plot=${farmName}`);
+export const getPlotByNameAndFarmID = async (
+  plotName: string,
+  farmID: number
+) => {
+  const response = await api.get(
+    `/plots/planting/farm?farm=${farmID}&plot=${plotName}`
+  );
   return response.data;
 };

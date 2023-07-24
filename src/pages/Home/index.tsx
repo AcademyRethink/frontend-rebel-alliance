@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { getPlotByNameAndFarmID } from "../../services/plot";
 import { useState, useEffect, useContext } from "react";
 import { getPlotgByFarmID } from "../../services/plot";
 import PlantingData from "../../components/PlantingData";
@@ -8,30 +9,6 @@ import PlotSearchInput from "../../components/PlotSearchInput";
 import Title from "../../components/Title";
 import SummaryTime from "../../components/SummaryTime";
 import FilterDate from "../../components/FilterDate";
-import "./styles.scss";
-
-// const Home = () => {
-//   const { userData } = useContext(AuthContext);
-//   if (userData?.token) {
-//     return (
-//       <div className="homeContainer">
-//         <SideBar />
-//         <div className="dataHomeContainer">
-//           <Title
-//             fontSize="48px"
-//             fontWeight="500"
-//             text={`Olá, ${userData.info.name}`}
-//           />
-//           <SummaryTime farmID={userData.info.farm_id} resume={true} />
-//           <Title fontSize="32px" fontWeight="700" text="Talhão" hasLine />
-//           <div className="searchContainer">
-//             <PlotSearchInput />
-//             <FilterDate />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
 import { PlotWithFarm } from "../../types/plotTypes";
 import "./styles.scss";
 import Button from "./../../components/Button";
@@ -46,12 +23,24 @@ const Home = () => {
   const [showAddPlanting, setShowAddPlanting] = useState(false);
   const [showBlurry, setShowBlurry] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchData, setSearchData] = useState("");
 
   const fetchData = () => {
     getPlotgByFarmID(userData.info.farm_id)
       .then((response) => {
         setDataPlot(response);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  };
+
+  const fetchPlotByName = (name: string) => {
+    getPlotByNameAndFarmID(name, userData.info.farm_id)
+      .then((response) => {
+        setDataPlot(response);
       })
       .catch((error) => {
         console.log(error);
@@ -85,9 +74,6 @@ const Home = () => {
   }
 
   return (
-    // <div className="pageHomeContainer">
-    //   <SideBar />
-    //   <div className="homeDataContainer">
     <div className="pageHomeContainer">
       <SideBar />
       <div className="homeDataContainer">
@@ -99,7 +85,15 @@ const Home = () => {
         <SummaryTime farmID={userData.info.farm_id} resume={true} />
         <Title fontSize="32px" fontWeight="700" text="Talhão" hasLine />
         <div className="searchContainer">
-          <PlotSearchInput />
+          <PlotSearchInput
+            value={searchData}
+            onChange={(event) => {
+              setSearchData(event.target.value);
+            }}
+            onClick={() => {
+              fetchPlotByName(searchData);
+            }}
+          />
           <FilterDate />
         </div>
         {dataPlot && dataPlot.length > 0 ? (
