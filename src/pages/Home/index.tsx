@@ -9,29 +9,6 @@ import Title from "../../components/Title";
 import SummaryTime from "../../components/SummaryTime";
 import FilterDate from "../../components/FilterDate";
 import "./styles.scss";
-
-// const Home = () => {
-//   const { userData } = useContext(AuthContext);
-//   if (userData?.token) {
-//     return (
-//       <div className="homeContainer">
-//         <SideBar />
-//         <div className="dataHomeContainer">
-//           <Title
-//             fontSize="48px"
-//             fontWeight="500"
-//             text={`Olá, ${userData.info.name}`}
-//           />
-//           <SummaryTime farmID={userData.info.farm_id} resume={true} />
-//           <Title fontSize="32px" fontWeight="700" text="Talhão" hasLine />
-//           <div className="searchContainer">
-//             <PlotSearchInput />
-//             <FilterDate />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
 import { PlotWithFarm } from "../../types/plotTypes";
 import "./styles.scss";
 import Button from "./../../components/Button";
@@ -85,9 +62,6 @@ const Home = () => {
   }
 
   return (
-    // <div className="pageHomeContainer">
-    //   <SideBar />
-    //   <div className="homeDataContainer">
     <div className="pageHomeContainer">
       <SideBar />
       <div className="homeDataContainer">
