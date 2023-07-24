@@ -15,3 +15,8 @@ export const getAPlotgByIdAndFarmID = async (
   const response = await api.get(`/plots/${plotID}/farm/${farmID}`);
   return response.data;
 };
+
+export const getPlotByName = async (farmName: string, farmID: number) => {
+  const response = await api.get(`/plantings?farm=${farmID}&plot=${farmName}`);
+  return response.data;
+};

@@ -9,3 +9,9 @@ export type TextInputProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   required?: boolean;
 };
+
+export type SearchInput = {
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onClick?: () => void;
+};
