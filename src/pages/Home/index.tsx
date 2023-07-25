@@ -165,7 +165,7 @@ const Home = () => {
               );
             })}
           </>
-        ) : searchData.length < 0 ? (
+        ) : searchData.length <= 0 ? (
           <div className="containerWelcome">
             <img src={welcome} alt="Imagem de boas vindas" />
             <h1>Boas-vindas ao Monitore!</h1>
