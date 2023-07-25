@@ -32,7 +32,7 @@ const Home = () => {
     if (!showBlurry) {
       fetchData();
     }
-  }, []);
+  }, [showBlurry]);
 
   const fetchData = () => {
     getPlotgByFarmID(userData.info.farm_id)
