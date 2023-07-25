@@ -131,7 +131,7 @@ const EditCard = ({
     <form onSubmit={handleButtonClick}>
       <div className="containerEditCard">
         <div className="containerInputEditCard">
-          {mode === "edit" ? (
+          {mode === "edit" || plotName ? (
             <TextInput
               className="inputEditCard TextInputDisable"
               label="Nome do talhão"

@@ -18,7 +18,7 @@ const PlantingData = ({
   onAdd,
   buttonText = "Mais detalhes",
   onButton,
-  plotName = " ",
+  plotName,
   fetchData,
 }: PlantingDataProps) => {
   const [stages, setStages] = useState<Stages[]>();
