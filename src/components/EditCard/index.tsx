@@ -131,15 +131,30 @@ const EditCard = ({
     <form onSubmit={handleButtonClick}>
       <div className="containerEditCard">
         <div className="containerInputEditCard">
-          <TextInput
-            className="inputEditCard"
-            label="Nome do talhão"
-            value={dataPlanting.plot}
-            placeHolder="Talhão"
-            onChange={(event) => handleInputChange(event.target.value, "plot")}
-            required={true}
-            readOnly={true}
-          />
+          {mode === "edit" ? (
+            <TextInput
+              className="inputEditCard TextInputDisable"
+              label="Nome do talhão"
+              value={dataPlanting.plot}
+              placeHolder="Talhão"
+              onChange={(event) =>
+                handleInputChange(event.target.value, "plot")
+              }
+              required={true}
+              readOnly={true}
+            />
+          ) : (
+            <TextInput
+              className="inputEditCard"
+              label="Nome do talhão"
+              value={dataPlanting.plot}
+              placeHolder="Talhão"
+              onChange={(event) =>
+                handleInputChange(event.target.value, "plot")
+              }
+              required={true}
+            />
+          )}
         </div>
         <div className="containerInputEditCard">
           <TextInput
